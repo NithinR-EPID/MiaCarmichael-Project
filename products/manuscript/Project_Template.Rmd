@@ -17,40 +17,16 @@ csl: ../apa.csl
 # Summary/Abstract
 _Write a summary of your project._
 
-# Illustrating setup
-_This section is only there to show how to insert results from other places in the project and how to cite figures and other references. Delete this whole section at some point._
-
-
-This paper [@Leek2015a] discusses types of analyses. 
-
-
-Figure \@ref(fig:resultfigure) shows a result figure from the analysis.
-
-```{r resultfigure,  fig.cap='Analysis figure.', echo=FALSE}
-knitr::include_graphics("../../results/resultfigure.png")
-```
-
-Table \@ref(tab:resulttable) shows a result table from the analysis.
-
-```{r resulttable,  echo=FALSE}
-resulttable=readRDS("../../results/resulttable.rds")
-knitr::kable(resulttable, caption = 'Result Table.')
-```
-
-
-Note that this cited reference will show up at the end of the document, the reference formatting is determined by the CSL file specified in the YAML header. Many more style files for almost any journal [are available](https://www.zotero.org/styles). You also specify the location of your bibtex reference file in the YAML. You can call your reference file anything you like, I just used the generic word `references.bib` but giving it a more descriptive name is probably better.
-
-
 # Introduction (required for part 1)
 
 ## General Background Information
-_The symbiotic relationship between ruminants and their ruminal microbial population allows cattle to occupy an ecological niche in which they have the ability to convert fibrous feedstuffs into higher quality end products via fermentation. Ruminal Microbes utilize nitrogen and carbon sources from ingested feedstuff to carryout bilogical processes, and create end products such as volitile fatty acids and microbial crude protein vital to cattle. It is due to this that it is of interest to identify optimal levels and types of non-protein nitrogen and carbon sources that are crucial to the rumen microbiome and cattle to increase efficiency. Previous studies have identified different results of nitrogen and carbon utlization, but few have also analyzed it in conjunction with the analysis of the rumen microbial population. _
+The symbiotic relationship between ruminants and their ruminal microbial population allows cattle to occupy an ecological niche in which they have the ability to convert fibrous feedstuffs into higher quality end products via fermentation. Ruminal Microbes utilize nitrogen and carbon sources from ingested feedstuff to carryout bilogical processes, and create end products such as volitile fatty acids and microbial crude protein vital to cattle. It is due to this that it is of interest to identify optimal levels and types of non-protein nitrogen and carbon sources that are crucial to the rumen microbiome and cattle to increase efficiency. Previous studies have identified different results of nitrogen and carbon utlization, but few have also analyzed it in conjunction with the analysis of the rumen microbial population. 
 
 ## Description of data and data source
-_This will be an in vitro study. Rumen fluid will be collected from cattle at the animal units at UGA. There will be 6 treatment groups and three replicates. We will analyze rumen fluid with corn without added NPN, rumen fluid with corn with added NPN, rumen fluid with bermuda grass and added NPN,rumen fluid with bermuda grass and no NPN, rumen fluid without additional feed or NPN, and rumen fluid without additional feed and with added NPN. We will use whole genome sequencing to aquire the rumen microbial profiles before and after treatments, pH, methane oduction, volitile fatty acid production,and ammonia production._
+This will be an in vitro study. Rumen fluid will be collected from cattle at the animal units at UGA. There will be 6 treatment groups and three replicates. We will analyze rumen fluid with corn without added NPN, rumen fluid with corn with added NPN, rumen fluid with bermuda grass and added NPN,rumen fluid with bermuda grass and no NPN, rumen fluid without additional feed or NPN, and rumen fluid without additional feed and with added NPN. We will use whole genome sequencing to aquire the rumen microbial profiles before and after treatments, pH, methane oduction, volitile fatty acid production,and ammonia production.
 
 ## Questions/Hypotheses to be addressed
-_In my project I am trying to answer what impact does added non protein nitrogen have on the rumen microbiome population and its ability to ferment corn and bermuda grass. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methanogen producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs._ 
+In my project I am trying to answer what impact does added non protein nitrogen have on the rumen microbiome population and its ability to ferment corn and bermuda grass. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methanogen producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
 
 # Methods and Results
 
