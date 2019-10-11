@@ -10,7 +10,7 @@ library(ggplot2)
 library(dplyr)
 
 #Load data, path is relative to project directory. Select a file and read the data into a data frame.
-rawdata <- readxl::read_excel("code/processing_code/Abundant_Phyla_MADA.xlsx")
+rawdata <- readxl::read_excel("code/Abundant_Phyla_MADA.xlsx")
                                          
 #take a look at the data
 head(rawdata)

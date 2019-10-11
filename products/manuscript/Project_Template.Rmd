@@ -56,7 +56,7 @@ library(dplyr)
 ```{r}
 #Load data, path is relative to project directory. Select a file and read the data into a data frame.
 library(readxl)
-rawdata<- read_excel("code/Abundant_Phyla_MADA.xlsx")
+rawdata <- readxl::read_excel("code/Abundant_Phyla_MADA.xlsx")
 View(rawdata)  
 ```
 
