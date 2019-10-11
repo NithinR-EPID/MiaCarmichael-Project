@@ -1,0 +1,26 @@
+---
+title: "practice"
+output: html_document
+---
+
+```{r}
+library(BiocManager)
+#source("https://bioconductor.org/install")
+#useDevel()
+BiocManager::install(version='devel')
+BiocManager::install("microbiome")
+
+```
+
+```{r}
+library(tidyverse)
+library(knitr)
+```
+
+```{r}
+library(readxl)
+High_RFI_steers_MADA <- read_excel("High RFI steers MADA.xlsx")
+View(High_RFI_steers_MADA)
+
+```
+
