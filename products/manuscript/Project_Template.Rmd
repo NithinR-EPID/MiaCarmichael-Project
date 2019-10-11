@@ -39,59 +39,61 @@ The data described for my next research project is still being gathered, and wil
 ## Data import and cleaning
 Although there are currently only two little graphs presented, they are the beginning of my analysis and also took an embaressingly long time to produce. The files to produce them are in the file code. However, I will copy the data cleaning below since it is still fairly short. 
 
+
+Processing Script: This script loads the raw data, processes and cleans it and saves it as Rds file in the processed_data folder
+`
+Load needed packages. make sure they are installed.
 ```{r}
-###############################
-# Processing script
-#
-#this script loads the raw data, processes and cleans it 
-#and saves it as Rds file in the processed_data folder
-```
-```{r}
-#load needed packages. make sure they are installed.
+
 library(readxl)
 library(ggplot2)
 library(dplyr)
 ```
 
-```{r}
-#Load data, path is relative to project directory. Select a file and read the data into a data frame.
-library(readxl)
-rawdata <- readxl::read_excel("code/Abundant_Phyla_MADA.xlsx")
-View(rawdata)  
-```
+Load data, path is relative to project directory. Select a file and read the data into a data frame.
 
 ```{r}
-#Take a look at the data
+setwd("~/Desktop/epid8060fall2019/MiaCarmichael-Project")
+library(readxl)
+rawdata <- read_excel("code/Abundant_Phyla_MADA.xlsx")
+```
+
+Take a look at the data
+```{r}
+
 head(rawdata)
 dplyr::glimpse(rawdata)
 ```
 
-
+Rename the columes, so when creating a graph things can be plotted easier
 ```{r}
-#Rename the columes, so when creating a graph things can be plotted easier
+
 names(rawdata)[1:4]<-c("Phyla", "Beginning", "End", "P")
 ```
-                                         
+
+Check name of columns to see what data looks like.                                    
 ```{r}
-#Check name of columns to see what data looks like.
+
 names(rawdata)
 ```
 
+An initial plot is created showing the composition of phyla at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
 ```{r}
-#An initial plot showing the composition of phyla at the beginning of the feedlot period in High RFI steers.
+
 ggplot(rawdata,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
-#Save the plot to a file 
+
 
 
 ```
 
 
+A second plot is created showing the composition of phyla at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
 ```{r}
-#An initial plot showing the composition of phyla at the beginning of the feedlot period in High RFI steers.
+
 ggplot(rawdata,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
-#Save the plot to a file
+
 ```
 
 
