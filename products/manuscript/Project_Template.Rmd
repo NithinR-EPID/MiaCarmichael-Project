@@ -34,10 +34,66 @@ _In most research papers, results and methods are separate. You can combine them
 
 
 ## Data aquisition
-_As applicable, explain where and how you got the data. If you directly import the data from an online source, you can combine this section with the next._
+The data described for my next research project is still being gathered, and will be ready for the analysis for this class project. Until then, I will be using data I collected from my last research project, chapter two of my thesis. Data was collected from 12 feedlot steers day one entering the feedlot and day 72, exiting the feedlot. 
 
 ## Data import and cleaning
-_Write code that reads in the file and cleans it so it's ready for analysis. Since this will be fairly long code for most datasets, it might be a good idea to have it in one or several R scripts. If that is the case, explain here briefly what each file does. The files themselves should be commented well so everyone can follow along._
+Although there are currently only two little graphs presented, they are the beginning of my analysis and also took an embaressingly long time to produce. The files to produce them are in the file code. However, I will copy the data cleaning below since it is still fairly short. 
+
+```{r}
+###############################
+# Processing script
+#
+#this script loads the raw data, processes and cleans it 
+#and saves it as Rds file in the processed_data folder
+```
+```{r}
+#load needed packages. make sure they are installed.
+library(readxl)
+library(ggplot2)
+library(dplyr)
+```
+
+```{r}
+#Load data, path is relative to project directory. Select a file and read the data into a data frame.
+library(readxl)
+rawdata<- read_excel("code/Abundant_Phyla_MADA.xlsx")
+View(rawdata)  
+```
+
+```{r}
+#Take a look at the data
+head(rawdata)
+dplyr::glimpse(rawdata)
+```
+
+
+```{r}
+#Rename the columes, so when creating a graph things can be plotted easier
+names(rawdata)[1:4]<-c("Phyla", "Beginning", "End", "P")
+```
+                                         
+```{r}
+#Check name of columns to see what data looks like.
+names(rawdata)
+```
+
+```{r}
+#An initial plot showing the composition of phyla at the beginning of the feedlot period in High RFI steers.
+ggplot(rawdata,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+
+#Save the plot to a file 
+
+
+```
+
+
+```{r}
+#An initial plot showing the composition of phyla at the beginning of the feedlot period in High RFI steers.
+ggplot(rawdata,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+
+#Save the plot to a file
+```
+
 
 ## Univariate analysis
 _Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for most of your variables. You definitely need to do it for the important variables, i.e. if you have main exposure or outcome variables, those need to be explored. Depending on the total number of variables in your dataset, explore all or some of the others._
