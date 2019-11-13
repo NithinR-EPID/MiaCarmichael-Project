@@ -235,7 +235,7 @@ The graph above displays the abundance of families over the course of the feedlo
 #Genus 
 For my dataset, there was litte variation over the course of the feedlot amongst genra. Howver there were noticible changes amongst methanogen populations. 
 
-Load data, path is relative to project directory. Select a file and read the data into a data frame.
+Load data, path is relative to project directory. Select a file and read the data into a data frame .
 
 ```{r}
 
