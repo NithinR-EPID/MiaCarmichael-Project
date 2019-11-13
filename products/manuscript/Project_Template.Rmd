@@ -14,31 +14,46 @@ csl: ../apa.csl
 ---
 
 
-# Summary/Abstract
+## Summary/Abstract
 _Write a summary of your project._
 
-# Introduction (required for part 1)
+## Introduction (required for part 1)
 
-## General Background Information
-The symbiotic relationship between ruminants and their ruminal microbial population allows cattle to occupy an ecological niche in which they have the ability to convert fibrous feedstuffs into higher quality end products via fermentation. Ruminants themselves do not produce fiber degrading enzymes, but they harbor bacteria, fungi, and protozoa that can (Russel, 2001). Ruminal Microbes utilize nitrogen and carbon sources from ingested feedstuff to carryout bilogical processes, and create end products such as volitile fatty acids and microbial crude protein vital to cattle. It is due to this that it is of interest to identify optimal levels and types of non-protein nitrogen and carbon sources that are crucial to the rumen microbiome and cattle to increase efficiency. Previous studies have identified different results of nitrogen and carbon utlization, but few have also analyzed it in conjunction with the analysis of the rumen microbial population. 
+# General Background Information
+The symbiotic relationship between ruminants and their ruminal microbial population allows cattle to occupy an ecological niche in which they have the ability to convert fibrous feedstuffs into higher quality end products via fermentation. Ruminants themselves do not produce fiber degrading enzymes, but they harbor bacteria, fungi, and protozoa that can [1]. 
+According to [2], feed inputs are the largest variable costs associated with producing beef, as they are directly related to 75% of the cost of producing finished cattle [3]. Continuing to improve animal efficiency can result in a decrease in feeding costs for producers and decrease environmental impacts. Residual Average Daily Gain (RADG) is one of the latest feed efficiency selection tools adopted by the American Angus Association in their selection programs. RADG is heritable, and it can be a predictor of a sire’s genetic ability for postweaning gain in future progeny compared to that of other sires, given a constant amount of feed consumed (American Angus Association, 2015). This allows producers to select for genetics that increase the efficiency of finishing cattle in a feedlot environment.
+Previous studies have shown de association between the ruminal microbiota and cattle feed efficiency (Hernandez-Sanabria et al., 2012; Shabat et al., 2016), so the current study was performed to further understand this relationship. More specifically, the objective of this study was to assess the relationship between cattle feed efficiency during the feedlot-finishing phase and their ruminal microbiotas at two distinct time points: at the beginning and end of the feedlot phase.
 
-## Description of data and data source
-This will be an in vitro study. Rumen fluid will be collected from cattle at the animal units at UGA. There will be 6 treatment groups and three replicates. We will analyze rumen fluid with corn without added NPN, rumen fluid with corn with added NPN, rumen fluid with bermuda grass and added NPN,rumen fluid with bermuda grass and no NPN, rumen fluid without additional feed or NPN, and rumen fluid without additional feed and with added NPN. We will use whole genome sequencing to aquire the rumen microbial profiles before and after treatments, pH, methane oduction, volitile fatty acid production,and ammonia production.
 
-## Questions/Hypotheses to be addressed
-In my project I am trying to answer what impact does added non protein nitrogen have on the rumen microbiome population and its ability to ferment corn and bermuda grass. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes. In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methane producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
+# Description of data and data source
+This study was conducted as a smaller portion of a larger study [4]. Briefly, for 5 offspring generations, commercial Angus cows were bred to determine the effect of selection based on RADG and marbling expected progeny differences (EPDs) on animal productivity, performance, and carcass quality. The current study utilized the fifth generation of steers born in that selection program and analyzed their performance in a feedlot-finishing system. The study was conducted on a commercial feedlot (Ridgefield Farm L.L.C.; Brasstown, North Carolina; 35.0391° N, 83.9576°W) from March 8, 2018 to May 29, 2018. A total of 65 steers were used, and of those 65 steers, 12 were selected based on their predicted EPDs. Of those 12 steers, the 5 most efficient and 5 least efficient according to residual feed intake (RFI) were selected for analysis of their ruminal microbiomes. Data was further processed 
+g
+# Questions/Hypotheses to be addressed
+In my project I am trying to answer what changes occur in the rumen microbiome of a feedlot cow on a high starch diet. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes. In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methane producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
 
-# Methods and Results
+## Methods and Results
 
-_In most research papers, results and methods are separate. You can combine them here if you find it easier. You are also welcome to structure things such that those are separate sections._
+Animals, experimental design, and management
 
+All procedures involving animals were verified and approved by the University of Georgia’s Office of Animal Care and Use (AUP #A2012 11-006-R1).
+
+The experimental period had a duration of 82 days. Prior to that, steers were adapted to the finishing diet for 3 weeks. The diets were formulated to meet all nutrient requirements for growing cattle according to the NRC [5]. The composition of those diets is shown in Table 1. During the entire study, steers were fed using a GrowSafe Systems® (GrowSafe Systems Ltd., Calgary, Canada) for individual collection of feed intake. Steers were weighted at the beginning, mid-point, and end of the experimental period. Because the individual dry matter intake (DMI) and body weight gains were known for each steer, computation of RFI was possible. RFI was calculated as the difference between actual and expected DMI using linear regression of midpoint metabolic body weight and average daily gain (ADG).
+
+Sample collection, DNA extraction and sequencing
+
+Ruminal samples were collected 2 times – upon entering and exiting the feedlot – using the methodology described by [6]. All samples were immediately refrigerated and transported to the laboratory, where they were frozen and stored at -20°C until further processing. DNA was extracted from the rumen fluid samples according to the semi-automated extraction protocol described by [7]. Briefly, the procedure started with 0.5 mL of homogenized rumen fluid and achieved extraction of DNA through a combination of mechanic and enzymatic methods. The mechanic portion of the protocol used a FastPrep 24 Instrument (MP Biomedicals LLC, Irvine, CA, USA) to disrupt the cells. The enzymatic portion used InhibitEX® Tablets (QIAGEN, Venlo, Netherlands). Elution and purification of DNA were performed using an automated robotic workstation (QIAcube; QIAGEN, Venlo, Netherlands). Determination of DNA concentration and purity were performed spectrophotometrically using the Synergy™ H4 Hybrid Multi-Mode Microplate Reader (BioTek Instruments Inc; Winooski, VT, USA). After DNA extraction, samples were taken to the Georgia Genomics and Bioinformatics Core facility (https://dna.uga.edu) for library preparation and 16S rRNA gene sequencing. Library preparation included PCR replications using the forward: S-D-Bact-0341-b-S-17 (5′-CCTACGGGNGGCWGCAG-3′); and reverse: S-D-Bact-0785-a-A-21 (5′-GACTACHVGGGTATCTAATCC-3′) primer pair [8]. Samples were sequenced using the Illumina MiSeq system (Illumina Inc., San Diego, CA, USA).
+
+Sequencing data 
+
+Sequencing data were demultiplexed and downloaded as FASTQ files. Pair-end reads were merged using BBMerge Paired Read Merger v37.64, and files were further analyzed using the QIIME pipeline v1.9.1 [9]. Files were converted into FASTA files and quality-filtered. The sequences were clustered into operational taxonomic units (OTUs) at 97% similarity according to the Greengenes database. Singleton OTUs were excluded from the analysis. A sampling depth of 28,662 sequences per sample was used for the diversity analyses. The computed alpha-diversity indexes were: number of observed OTUs, Chao1, species evenness, Shannon index, and Faith’s phylogenetic diversity.
+
+Statistical Analysis
 
 ## Data aquisition
-The data described for my next research project is still being gathered, and will be ready for the analysis for this class project. Until then, I will be using data I collected from my last research project, chapter two of my thesis. Data was collected from 12 feedlot steers day one entering the feedlot and day 72, exiting the feedlot. 
+The data described was collected from a total of 65 steers, and of those 65 steers, 12 were selected based on their predicted EPDs. Of those 12 steers, the 5 most efficient and 5 least efficient according to residual feed intake (RFI) were selected for analysis of their ruminal microbiomes.
 
 ## Data import and cleaning
-Here I have imported and cleaned data from the microbiome (phylum, family, and genus) of High and Low RFI steers, as well as their alpha diversity.  
-
+Here I have imported and cleaned data from the microbiome (phylum, family, and genus) of High and Low RFI steers, as well as their alpha diversity and p-values.  
 
 Processing Script: This script loads the raw data, processes and cleans it and saves it as Rds file in the processed_data folder
 `
@@ -55,7 +70,7 @@ library(dplyr)
 library(tidyverse)
 
 ```
-#Phylum
+#Phylum:High RFI
 
 Load data, path is relative to project directory. Select a file and read the data into a data frame.
 ```{r}
@@ -138,9 +153,80 @@ The graph above displays the composition of phyla over the course of the feedlot
 Repeat for Family and Genus 
 
 
+#Phylum: Low RFI
+
+Load data, path is relative to project directory. Select a file and read the data into a data frame.
+```{r}
+phyladata2 <- read_csv(here("data", "raw_data", "Phyla_Low_MADA.csv"))
+```
+
+Take a look at the data
+```{r}
+head(phyladata2)
+dplyr::glimpse(phyladata2)
+```
+
+There are only 11 identified Phylum in this data, but there are currently 13 observations. Remove any observations with NA
+```{r}
+phyladata2 <- drop_na(phyladata2)
+dim(phyladata2)
+```
+
+Rename the columes, so when creating a graph things can be plotted easier
+```{r}
+names(phyladata2)[1:4]<-c("Phyla", "Beginning", "End", "P")
+```
+
+Check name of columns to see what data looks like.
+```{r}
+names(phyladata2)
+```
 
 
-#Family
+An initial plot is created showing the composition of phyla at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file.
+```{r}
+ggplot(phyladata2,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+A second plot is created showing the composition of families at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
+```{r}
+ggplot(phyladata2,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+The axis labels aren't quite right for both graphs. That should be considered when creating them.
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End".
+```{r}
+#Create datasets 
+
+Period <- c(rep("Beginning",11),  rep("End",11))
+
+Phyla <- rep(c("Firmicutes", "Bacteroidetes", 
+"Actinobacteria", "TM7", "Proteobacteria", "Euryarchaeota", "Spirochaetes", "Cyanobacteria", 
+"Tenericutes", "Planctomycetes", "Other Phyla"),2) 
+
+Abundance <- c(34.95, 48.73, 7.21, 1.81, 1.48, 1.28, 1.31, 0.39, 0.16, 0.21, 2.46, 55.14, 33.04, 1.29, 2.06, 2.31, 1.39, 0.81, 0.33, 0.46, 0.27, 2.91)
+
+
+  
+#Combine datasets 
+phylacomb2 <- data.frame(Period, Phyla, Abundance)
+
+#Remove missing data
+phylacomb2 <- drop_na(phylacomb)
+dim(phylacomb2)
+
+#Graph combined dataset
+ggplot(phylacomb2, aes(fill=Phyla, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
+```
+
+The graph above displays the composition of phyla over the course of the feedlot period in Low-RFI/High efficiency steers
+Repeat for Family and Genus 
+
+#Family: High RFI
 Load data, path is relative to project directory. Select a file and read the data into a data frame.
 
 ```{r}
@@ -231,8 +317,78 @@ ggplot(familycomb, aes(fill=Family, y=Abundance, x=Period)) +
 ```
 The graph above displays the abundance of families over the course of the feedlot period in High RFI/low efficiency steers
 
+#Family: Low RFI
 
-#Genus 
+Load data, path is relative to project directory. Select a file and read the data into a data frame.
+```{r}
+familydata2 <- read_csv(here("data", "raw_data", "Family_Low_MADA.csv"))
+```
+
+Take a look at the data
+```{r}
+head(familydata2)
+dplyr::glimpse(familydata2)
+```
+
+
+There are only 17 identified families in this data, but there are currently  observations. Remove any observations with NA
+```{r}
+familydata2 <- drop_na(familydata2)
+dim(familydata2)
+```
+
+Rename the columes, so when creating a graph things can be plotted easier
+```{r}
+names(familydata2)[1:4]<-c("Family", "Beginning", "End", "P")
+```
+
+Check name of columns to see what data looks like. 
+```{r}
+names(familydata2)
+```
+
+An initial plot is created showing the composition of families at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file. 
+```{r}
+ggplot(familydata2,aes(x="", y=Beginning, fill=Family))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+A second plot is created showing the composition of families at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
+```{r}
+ggplot(familydata2,aes(x="", y=End, fill=Family))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+The axis labels aren't quite right for both graphs. That should be considered when creating them. 
+
+
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End". 
+
+```{r}
+#Create datasets 
+
+Period <- c(rep("Beginning",17),  rep("End",17))
+
+Family <- rep(c("Ruminococcaceae", "Prevotellaceae", "Order Bacteroidales", "Order Clostridiales", "Lachnospiraceae", "Bifidobacteriaceae", "F15", "RF16",  "Paraprevotellaceae", "Methanobacteriaceae", "Spirochaetaceae", "Erysipelotrichaceae", "Coriobacteriaceae", "Succinivibrionaceae", "Order RF32", "S24-7", "Other Families"),2) 
+
+Abundance <- c(20.1494728, 38.02867118, 6.835860087, 5.508270337, 5.904255838, 6.231525756, 1.812183786, 1.50086736, 1.331658729, 1.280539877, 1.254985451, 1.199951243, 0.707032815, 0.587611249, 0.446050088, 0.49438202, 6.726681384, 39.27078212, 20.09301518, 8.471782946, 7.119817496, 5.863717733, 0.317316787, 2.053210621, 1.752576479, 1.496544772, 1.392298259, 0.649711389, 0.529057072, 0.757975929, 0.820005408, 0.932485624, 0.862008182, 7.617694)
+  
+#Combine datasets 
+familycomb2 <- data.frame(Period, Family, Abundance)
+
+#Graph combined dataset
+ggplot(familycomb2, aes(fill=Family, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
+```
+The graph above displays the abundance of families over the course of the feedlot period in Low RFI/High efficiency steers
+
+Notice that the abundance and composition of families differs between Low-RFI and High-RFI steers
+
+Repeat for Genus
+
+
+#Genus: High RFI
 For my dataset, there was litte variation over the course of the feedlot amongst genra. Howver there were noticible changes amongst methanogen populations. 
 
 Load data, path is relative to project directory. Select a file and read the data into a data frame .
@@ -297,6 +453,70 @@ genuscomb <- data.frame(Period, Genus, Abundance)
 ggplot(genuscomb, aes(fill=Genus, y=Abundance, x=Period)) +
   geom_bar(stat = "identity")
 ```
+
+#Genus: Low RFI
+For my dataset, there was litte variation over the course of the feedlot amongst genra. Howver there were noticible changes amongst methanogen populations. 
+
+Load data, path is relative to project directory. Select a file and read the data into a data frame .
+```{r}
+genusdata2 <- read_csv(here("data", "raw_data", "Genus_Low_MADA.csv"))
+```
+
+Take a look at the data
+```{r}
+head(genusdata2)
+dplyr::glimpse(genusdata2)
+```
+
+Remove any observations with NA
+```{r}
+genusdata2 <- drop_na(genusdata2)
+dim(genusdata2)
+```
+
+Rename the columes, so when creating a graph things can be plotted easier
+```{r}
+names(genusdata2)[1:4]<-c("Genus", "Beginning", "End", "P")
+```
+
+Check name of columns to see what data looks like.
+```{r}
+names(genusdata2)
+```
+
+An initial plot is created showing the composition of two genera at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file.
+
+```{r}
+ggplot(genusdata2,aes(x="", y=Beginning, fill=Genus))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+A second plot is created showing the composition of two genera at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
+```{r}
+ggplot(genusdata2,aes(x="", y=End, fill=Genus))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End".
+```{r}
+Period <- c(rep("Beginning",2),  rep("End",2))
+
+Genus <- rep(c("Methanobrevibacter",
+"Methanosphaera"),2) 
+
+Abundance <- c(1.3, 0.02, 1.4, 0.02)
+  
+#Combine datasets 
+genuscomb2 <- data.frame(Period, Genus, Abundance)
+
+#Graph combined dataset
+ggplot(genuscomb2, aes(fill=Genus, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
+```
+
+
+
+
 
 
 ## Univariate analysis
