@@ -37,7 +37,7 @@ _In most research papers, results and methods are separate. You can combine them
 The data described for my next research project is still being gathered, and will be ready for the analysis for this class project. Until then, I will be using data I collected from my last research project, chapter two of my thesis. Data was collected from 12 feedlot steers day one entering the feedlot and day 72, exiting the feedlot. 
 
 ## Data import and cleaning
-Although there are currently only two little graphs presented, they are the beginning of my analysis and also took an embaressingly long time to produce. The files to produce them are in the file code. However, I will copy the data cleaning below since it is still fairly short. 
+Here I have imported and cleaned data from the microbiome (phylum, family, and genus) of High and Low RFI steers, as well as their alpha diversity.  
 
 
 Processing Script: This script loads the raw data, processes and cleans it and saves it as Rds file in the processed_data folder
@@ -46,54 +46,256 @@ Load needed packages. make sure they are installed.
 ```{r}
 
 library(readxl)
+library(readr)
 library(ggplot2)
 library(dplyr)
+library(here)
+library(visdat)
+library(dplyr)
+library(tidyverse)
+
 ```
+#Phylum
 
 Load data, path is relative to project directory. Select a file and read the data into a data frame.
-
 ```{r}
-setwd("~/Desktop/epid8060fall2019/MiaCarmichael-Project")
-library(readxl)
-rawdata <- read_excel("code/Abundant_Phyla_MADA.xlsx")
+phyladata <- read_csv(here("data", "raw_data", "Abundant_Phyla_MADA.csv"))
 ```
 
 Take a look at the data
 ```{r}
 
-head(rawdata)
-dplyr::glimpse(rawdata)
+head(phyladata)
+dplyr::glimpse(phyladata)
 ```
+
+There are only 11 identified Phylum in this data, but there are currently 13 observations. Remove any observations with NA
+```{r}
+phyladata <- drop_na(phyladata)
+dim(phyladata)
+```
+
 
 Rename the columes, so when creating a graph things can be plotted easier
 ```{r}
 
-names(rawdata)[1:4]<-c("Phyla", "Beginning", "End", "P")
+names(phyladata)[1:4]<-c("Phyla", "Beginning", "End", "P")
+```
+
+
+Check name of columns to see what data looks like.
+```{r}
+names(phyladata)
+```
+
+An initial plot is created showing the composition of phyla at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
+
+```{r}
+ggplot(phyladata,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+A second plot is created showing the composition of families at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
+```{r}
+ggplot(phyladata,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+The axis labels aren't quite right for both graphs. That should be considered when creating them.
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End".
+
+```{r}
+#Create datasets 
+
+Period <- c(rep("Beginning",11),  rep("End",11))
+
+Phyla <- rep(c("Firmicutes", "Bacteroidetes", 
+"Actinobacteria", "TM7", "Proteobacteria", "Euryarchaeota", "Spirochaetes", "Cyanobacteria", 
+"Tenericutes", "Planctomycetes", "Other Phyla"),2) 
+
+Abundance <- c(34.95, 48.73, 7.21, 1.81, 1.48, 1.28, 1.31, 0.39, 0.16, 0.21, 2.46, 55.14, 33.04, 1.29, 2.06, 2.31, 1.39, 0.81, 0.33, 0.46, 0.27, 2.91)
+
+
+  
+#Combine datasets 
+phylacomb <- data.frame(Period, Phyla, Abundance)
+
+#Remove missing data
+phylacomb <- drop_na(phylacomb)
+dim(phylacomb)
+
+#Graph combined dataset
+ggplot(phylacomb, aes(fill=Phyla, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
+
+
+   
+ 
+  
+```
+The graph above displays the composition of phyla over the course of the feedlot period in High RFI/low efficiency steers
+Repeat for Family and Genus 
+
+
+
+
+#Family
+Load data, path is relative to project directory. Select a file and read the data into a data frame.
+
+```{r}
+
+
+familydata <- read_csv(here("data", "raw_data", "Abundant_FamiliesHighRFI_MADA.csv"))
+
+```
+
+Take a look at the data
+```{r}
+
+head(familydata)
+dplyr::glimpse(familydata)
+```
+
+There are only 18 identified Phylum in this data, but there are currently  observations. Remove any observations with NA
+```{r}
+
+familydata <- drop_na(familydata)
+dim(familydata)
+
+```
+
+
+
+
+Rename the columes, so when creating a graph things can be plotted easier
+```{r}
+
+names(familydata)[1:4]<-c("Family", "Beginning", "End", "P")
 ```
 
 Check name of columns to see what data looks like.                                    
 ```{r}
 
-names(rawdata)
-```
-
-An initial plot is created showing the composition of phyla at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
-```{r}
-
-ggplot(rawdata,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
-
-
-
-
+names(familydata)
 ```
 
 
-A second plot is created showing the composition of phyla at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
+
+
+
+An initial plot is created showing the composition of families at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
 ```{r}
 
-ggplot(rawdata,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+ ggplot(familydata,aes(x="", y=Beginning, fill=Family))+ geom_bar(width = 1, stat = "identity")
 
 
+
+
+```
+
+
+A second plot is created showing the composition of families at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
+```{r}
+
+ggplot(familydata,aes(x="", y=End, fill=Family))+ geom_bar(width = 1, stat = "identity")
+
+
+```
+
+The axis labels aren't quite right for both graphs. That should be considered when creating them. 
+
+
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End". 
+```{r}
+
+#Create datasets 
+
+Period <- c(rep("Beginning",18),  rep("End",18))
+
+Family <- rep(c("Ruminococcaceae", "Prevotellaceae", "Order Clostridiales", "Order Bacteroidales", "Lachnospiraceae", "RF16", "Methanobacteriaceae", "F16", "Paraprevotellaceae", "S24-7", "Coriobacteriaceae", "Erysipelotrichaceae", "Bifidobacteriaceae", "Spirochaetaceae", "Streptococcaceae", "Mogibacteriaceae", "Succinivibrionaceae", "Other Families"),2) 
+
+Abundance <- c(25.97712848, 36.91095082, 5.934025064, 5.940942506, 5.189480948, 1.937621255, 1.235079234, 1.049483052, 1.214503215, 0.956874771, 0.860283125, 1.158815891, 1.451193422, 1.135264464, 0.802975589, 0.476774167, 0.255410691, 7.513193298, 40.33978584, 14.30713689, 8.401835665, 7.486088, 7.701011161, 1.357351894, 2.004700597, 2.111417947, 1.348409159, 1.177308762, 1.058027748, 0.733590889, 0.311866263, 0.47494151, 0.461737838, 0.773816017, 0.916878216, 9.034095609)
+  
+#Combine datasets 
+familycomb <- data.frame(Period, Family, Abundance)
+
+#Graph combined dataset
+ggplot(familycomb, aes(fill=Family, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
+  
+
+
+
+```
+The graph above displays the abundance of families over the course of the feedlot period in High RFI/low efficiency steers
+
+
+#Genus 
+For my dataset, there was litte variation over the course of the feedlot amongst genra. Howver there were noticible changes amongst methanogen populations. 
+
+Load data, path is relative to project directory. Select a file and read the data into a data frame.
+
+```{r}
+
+genusdata <- read_csv(here("data", "raw_data", "Genera_MADA.csv"))
+```
+
+Take a look at the data
+```{r}
+head(genusdata)
+dplyr::glimpse(genusdata)
+```
+
+Remove any observations with NA
+```{r}
+genusdata <- drop_na(genusdata)
+dim(genusdata)
+```
+
+
+Rename the columes, so when creating a graph things can be plotted easier
+```{r}
+names(genusdata)[1:4]<-c("Genus", "Beginning", "End", "P")
+```
+
+Check name of columns to see what data looks like.
+```{r}
+
+names(genusdata)
+```
+
+
+
+An initial plot is created showing the composition of two genera at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
+
+```{r}
+ ggplot(genusdata,aes(x="", y=Beginning, fill=Genus))+ geom_bar(width = 1, stat = "identity")
+```
+
+
+A second plot is created showing the composition of two genera at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
+
+```{r}
+ggplot(genusdata,aes(x="", y=End, fill=Genus))+ geom_bar(width = 1, stat = "identity")
+```
+
+It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End". 
+```{r}
+Period <- c(rep("Beginning",2),  rep("End",2))
+
+Genus <- rep(c("Methanobrevibacter",
+"Methanosphaera"),2) 
+
+Abundance <- c(1.2, 0.01, 2.0, 0.03)
+  
+#Combine datasets 
+genuscomb <- data.frame(Period, Genus, Abundance)
+
+#Graph combined dataset
+ggplot(genuscomb, aes(fill=Genus, y=Abundance, x=Period)) +
+  geom_bar(stat = "identity")
 ```
 
 
