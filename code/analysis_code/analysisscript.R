@@ -15,25 +15,29 @@ library(here)
 library(visdat)
 library(dplyr)
 library(tidyverse)
+library(car)
+
 
 
 ###Phylum: High-RFI
 #What changes occured at the phyla level in high-RFI steers? 
 
 #load data. path is relative to project directory.
-phyladata<- readRDS("./data/processed_data/processeddata_phyladata.rds")
+
+phyladata<- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
+phylatest <- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
 
 #To view the micriobiome at the phyla level overtime an initial plot is created showing the composition of phyla at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
 HPplot1<-ggplot(phyladata,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highphylabeg.png",plot=HPplot1)
+ggsave(filename= here("./results/Highphylabeg.png"),plot=HPplot1)
 
 #A second plot is created showing the composition of families at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
-HPplot2 <- ggplot(phyladata,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
+HPplot2 <- ggplot(phyladata2,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename= "./results/Highphylaend.png",plot=HPplot2)
+ggsave(filename= here("././results/Highphylaend.png"),plot=HPplot2)
 
 #The axis labels aren't quite right for both graphs. That should be considered when creating them.
 
@@ -64,7 +68,13 @@ HPplotcomb <- ggplot(phylacomb, aes(fill=Phyla, y=Abundance, x=Period)) +
 #Repeat for Family and Genus 
 
 #Save graph
-ggsave(filename = "./results/Highphylacomb.png",plot=HPplotcomb)
+ggsave(filename = here("././results/Highphylacomb.png"),plot=HPplotcomb)
+
+
+#ANOVA
+
+#Transform data into tibble
+as_tibble(phylatest)
 
 
 
@@ -73,21 +83,21 @@ ggsave(filename = "./results/Highphylacomb.png",plot=HPplotcomb)
 #What changes occured at the phyla level in low-RFI steers?
 
 #load data. path is relative to project directory.
-phyladata2<- readRDS("./data/processed_data/processeddata_phyladata2.rds")
+phyladata2<- readRDS("././data/processed_data/processeddata_phyladata2.rds")
 
 #An initial plot is created showing the composition of phyla at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file.
 
 LPplot1 <- ggplot(phyladata2,aes(x="", y=Beginning, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowphylabeg.png",plot=LPplot1)
+ggsave(filename = here("././results/Lowphylabeg.png"),plot=LPplot1)
 
 #A second plot is created showing the composition of families at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
 
 LPplot2 <- ggplot(phyladata2,aes(x="", y=End, fill=Phyla))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowphylaend.png",plot=LPplot2)
+ggsave(filename = here("././results/Lowphylaend.png"),plot=LPplot2)
 
 #The axis labels aren't quite right for both graphs. That should be considered when creating them.
 #It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End".
@@ -119,7 +129,7 @@ LPplotcomb <- ggplot(phylacomb2, aes(fill=Phyla, y=Abundance, x=Period)) +
 #Repeat for Family and Genus 
 
 #Save graph
-ggsave(filename = "./results/Lowphylacomb.png",plot=LPplotcomb)
+ggsave(filename = here("././results/Lowphylacomb.png"),plot=LPplotcomb)
 
 
 
@@ -128,19 +138,19 @@ ggsave(filename = "./results/Lowphylacomb.png",plot=LPplotcomb)
 #What changes occured in the family level over time in High-RFI steers?
 
 #load data. path is relative to project directory.
-familydata<- readRDS("./data/processed_data/processeddata_familydata.rds")
+familydata<- readRDS("././data/processed_data/processeddata_familydata.rds")
 
 #An initial plot is created showing the composition of families at the beginning of the feedlot period in High RFI/low efficiency steers. Save plot to a file. 
 HFplot1 <- ggplot(familydata,aes(x="", y=Beginning, fill=Family))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highfamilybeg.png",plot=HFplot1)
+ggsave(filename = here("././results/Highfamilybeg.png"),plot=HFplot1)
 
 #A second plot is created showing the composition of families at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
 HFplot2 <- ggplot(familydata,aes(x="", y=End, fill=Family))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highfamilyend.png",plot=HFplot2)
+ggsave(filename = here("././results/Highfamilyend.png"),plot=HFplot2)
 
 #The axis labels aren't quite right for both graphs. That should be considered when creating them. 
 
@@ -166,7 +176,7 @@ HFplotcomb <- ggplot(familycomb, aes(fill=Family, y=Abundance, x=Period)) +
 #The graph above displays the abundance of families over the course of the feedlot period in High RFI/low efficiency steers
 
 #Save graph
-ggsave(filename = "./results/Highfamilycomb.png",plot=HFplotcomb)
+ggsave(filename =here("././results/Highfamilycomb.png"),plot=HFplotcomb)
 
 
 
@@ -175,19 +185,19 @@ ggsave(filename = "./results/Highfamilycomb.png",plot=HFplotcomb)
 ###Family: Low-RFI
 
 #load data. path is relative to project directory.
-familydata2<- readRDS("./data/processed_data/processeddata_familydata2.rds")
+familydata2<- readRDS("././data/processed_data/processeddata_familydata2.rds")
 
 #An initial plot is created showing the composition of families at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file. 
 LFplot1 <- ggplot(familydata2,aes(x="", y=Beginning, fill=Family))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
- ggsave(filename = "./results/Lowfamilycbeg.png",plot=LFplot1)
+ ggsave(filename =here("././results/Lowfamilycbeg.png"),plot=LFplot1)
 
 #A second plot is created showing the composition of families at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
 LFplot2 <- ggplot(familydata2,aes(x="", y=End, fill=Family))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowfamilyend.png",plot=LFplot2)
+ggsave(filename = here("././results/Lowfamilyend.png"),plot=LFplot2)
 
 #The axis labels aren't quite right for both graphs. That should be considered when creating them. 
 
@@ -209,7 +219,7 @@ LFplotcomb <- ggplot(familycomb2, aes(fill=Family, y=Abundance, x=Period)) +
   geom_bar(stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowfamilycomb.png",plot=LFplotcomb)
+ggsave(filename = here("././results/Lowfamilycomb.png"),plot=LFplotcomb)
 
 #The graph above displays the abundance of families over the course of the feedlot period in Low RFI/High efficiency steers
 #Notice that the abundance and composition of families differs between Low-RFI and High-RFI steers
@@ -227,13 +237,13 @@ genusdata<- readRDS("./data/processed_data/processeddata_genusdata.rds")
 HGplot1 <- ggplot(genusdata,aes(x="", y=Beginning, fill=Genus))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highgenusbeg.png",plot=HGplot1)
+ggsave(filename = here("././results/Highgenusbeg.png"),plot=HGplot1)
 
 #A second plot is created showing the composition of two genera at the end of the feedlot period in High RFI/low efficiency steers.Save the plot to a file.
 HGplot2 <- ggplot(genusdata,aes(x="", y=End, fill=Genus))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highgenusend.png",plot=HGplot2)
+ggsave(filename = here("./results/Highgenusend.png"),plot=HGplot2)
 
 #It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End". 
 Period <- c(rep("Beginning",2),  rep("End",2))
@@ -251,7 +261,7 @@ HGplotcomb <- ggplot(genuscomb, aes(fill=Genus, y=Abundance, x=Period)) +
   geom_bar(stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Highgenuscomb.png",plot=HGplotcomb)
+ggsave(filename = here("././results/Highgenuscomb.png"),plot=HGplotcomb)
 
 
 
@@ -265,13 +275,13 @@ genusdata2<- readRDS("./data/processed_data/processeddata_genusdata2.rds")
 LGplot1 <- ggplot(genusdata2,aes(x="", y=Beginning, fill=Genus))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowgenusbeg.png",plot=LGplot1)
+ggsave(filename = here("././results/Lowgenusbeg.png"),plot=LGplot1)
 
 #A second plot is created showing the composition of two genera at the end of the feedlot period in Low RFI/High efficiency steers.Save the plot to a file.
 LGplot2 <- ggplot(genusdata2,aes(x="", y=End, fill=Genus))+ geom_bar(width = 1, stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowgenusbend.png",plot=LGplot2)
+ggsave(filename = here("././results/Lowgenusbend.png"),plot=LGplot2)
 
 
 #It is easier to see these plots side by side. To do this, create subsets to divide by period, "Beginning" and "End".
@@ -290,7 +300,7 @@ LGplotcomb <- ggplot(genuscomb2, aes(fill=Genus, y=Abundance, x=Period)) +
   geom_bar(stat = "identity")
 
 #Save graph
-ggsave(filename = "./results/Lowgenuscomb.png",plot=LGplotcomb)
+ggsave(filename = here("././results/Lowgenuscomb.png"),plot=LGplotcomb)
 
 
 

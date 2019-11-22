@@ -23,6 +23,7 @@ library(tidyverse)
 #Load data, path is relative to project directory. Select a file and read the data into a data frame.
 phyladata <- read_csv(here("data", "raw_data", "Abundant_Phyla_MADA.csv"))
 
+
 #Take a look at the data
 head(phyladata)
 dplyr::glimpse(phyladata)
@@ -37,7 +38,12 @@ names(phyladata)[1:4]<-c("Phyla", "Beginning", "End", "P")
 #Check name of columns to see what data looks like.
 names(phyladata)
 
+#Make a subset of this data frame without P to recalculate that value in our own analysis
 
+phylatest=subset(phyladata, select = -c(P))
+
+#Take a look at the data
+head(phylatest)
 
 
 
@@ -60,7 +66,12 @@ names(phyladata2)[1:4]<-c("Phyla", "Beginning", "End", "P")
 #Check name of columns to see what data looks like.
 names(phyladata2)
 
+#Make a subset of this data frame without P to recalculate that value in our own analysis
 
+phylatest2 =subset(phyladata2, select = -c(P))
+
+#Take a look at the data
+head(phylatest2)
 
 
 ###Family: High RFI
@@ -83,7 +94,12 @@ names(familydata)[1:4]<-c("Family", "Beginning", "End", "P")
 #Check name of columns to see what data looks like.                                    
 names(familydata)
 
+#Make a subset of this data frame without P to recalculate that value in our own analysis
 
+familytest=subset(familydata, select = -c(P))
+
+#Take a look at the data
+head(familytest)
 
 ###Family: Low RFI
 
@@ -106,6 +122,12 @@ names(familydata2)[1:4]<-c("Family", "Beginning", "End", "P")
 names(familydata2)
 
 
+#Make a subset of this data frame without P to recalculate that value in our own analysis
+
+familytest2=subset(familydata2, select = -c(P))
+
+#Take a look at the data
+head(familytest2)
 
 
 
@@ -130,6 +152,12 @@ names(genusdata)[1:4]<-c("Genus", "Beginning", "End", "P")
 names(genusdata)
 
 
+#Make a subset of this data frame without P to recalculate that value in our own analysis
+
+genustest=subset(genusdata, select = -c(P))
+
+#Take a look at the data
+head(genustest)
 
 
 ###Genus: Low RFI
@@ -152,9 +180,22 @@ names(genusdata2)[1:4]<-c("Genus", "Beginning", "End", "P")
 #Check name of columns to see what data looks like.
 names(genusdata2)
 
-saveRDS(phyladata, file = "./data/processed_data/processeddata_phyladata.rds")
-saveRDS(phyladata2, file = "./data/processed_data/processeddata_phyladata2.rds")
-saveRDS(familydata, file = "./data/processed_data/processeddata_familydata.rds")
-saveRDS(familydata2, file = "./data/processed_data/processeddata_familydata2.rds")
-saveRDS(genusdata, file = "./data/processed_data/processeddata_genusdata.rds")
-saveRDS(genusdata2, file = "./data/processed_data/processeddata_genusdata2.rds")
+genustest2=subset(genusdata2, select = -c(P))
+
+#Take a look at the data
+head(genustest2)
+
+
+saveRDS(phyladata, file = here("./data/processed_data/processeddata_phyladata.rds"))
+saveRDS(phyladata2, file =here("./data/processed_data/processeddata_phyladata2.rds"))
+saveRDS(familydata, file = here("./data/processed_data/processeddata_familydata.rds"))
+saveRDS(familydata2, file = here("./data/processed_data/processeddata_familydata2.rds"))
+saveRDS(genusdata, file = here("./data/processed_data/processeddata_genusdata.rds"))
+saveRDS(genusdata2, file = here("./data/processed_data/processeddata_genusdata2.rds"))
+
+saveRDS(phylatest, file = here("./data/processed_data/processeddata_phyladata.rds"))
+saveRDS(phylatest2, file =here("./data/processed_data/processeddata_phyladata2.rds"))
+saveRDS(familytest, file = here("./data/processed_data/processeddata_familydata.rds"))
+saveRDS(familytest2, file = here("./data/processed_data/processeddata_familydata2.rds"))
+saveRDS(genustest, file = here("./data/processed_data/processeddata_genusdata.rds"))
+saveRDS(genustest2, file = here("./data/processed_data/processeddata_genusdata2.rds"))
