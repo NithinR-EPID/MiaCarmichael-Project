@@ -1,0 +1,89 @@
+#Load libraries, install any if needed
+
+```{r}
+library(tidyverse)
+library(dplyr)
+library(DT)
+library(ggplot2)
+library(ggthemes)
+library(cowplot)
+library(here)
+library(waffle) #Needs to be 1.0 or above
+#devtools::install_github("liamgilbey/ggwaffle")
+
+```
+
+#Import data 
+```{r}
+nz_bird <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2019/2019-11-19/nz_bird.csv")
+```
+
+#Look at data.  
+```{r}
+view(nz_bird)
+str(nz_bird)
+
+```
+
+#There are 217300 observations here, so I'm just going to look at the top 10 bird breeds.
+#Get rid of any missing values
+```{r}
+top10 <- nz_bird %>%
+  filter(!is.na(vote_rank) & !is.na(bird_breed)) %>%
+  count(bird_breed) %>%
+  arrange(desc(n)) %>%
+  top_n(10) %>%
+  rename(total = n)
+
+
+top10_birds <- top10$bird_breed
+
+```
+#Filter birds to top 10 and scaling the data by dividing into 25 to make vizualization easier
+
+```{r}
+top10_breakdown <- nz_bird %>%
+  count(bird_breed, vote_rank) %>%
+  filter(bird_breed %in% top10_birds) %>%
+  left_join(top10, by = "bird_breed") %>%
+  group_by(bird_breed) %>%
+  mutate(n = n/25,
+         vote_rank = as.factor(vote_rank)) %>%
+  select(c(-total))
+
+```
+
+
+#Visualization 
+```{r}
+ggplot(top10_breakdown, aes(fill = fct_rev(vote_rank), values = rev(n))) +
+  geom_waffle(color = "white", size = .3, flip = TRUE) +
+  facet_wrap(~rev(bird_breed), nrow = 1, strip.position = "bottom",
+             labeller = label_wrap_gen(width = 10)) + #will prevent overflow of labels
+  scale_x_discrete() +
+  scale_y_continuous(labels = function(x) x * 25, # make this multiplyer the same as n_rows
+                     expand = c(0,0),
+                     limits = c(0,50),
+                     breaks = seq(0,50, by = 5)) +
+  scale_fill_tableau(name = "Vote Rank",
+                     labels = c("1", "2", "3", "4", "5")) +
+  coord_equal() +
+  labs(
+    title = "NZ Bird of the Year Votes Among Top 10 Bird Breeds",
+    subtitle = "1 square = 25 votes",
+    x = "Bird Breed",
+    y = "Total Votes") +
+  theme(panel.grid = element_blank(),
+        plot.title = element_text(size = 16, hjust = .2),
+        axis.ticks = element_blank(),
+        panel.background = element_blank(),
+        strip.background = element_blank())
+
+
+```
+
+
+```{r}
+
+```
+

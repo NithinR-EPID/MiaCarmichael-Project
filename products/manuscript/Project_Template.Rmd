@@ -56,16 +56,135 @@ The data described was collected from a total of 65 steers, and of those 65 stee
 The data is imported from multiple .csv files. For both Low-RFI and High-RFI there are 11 observations from phyla, _Firmicutes, Bacteroidetes, Actinobacteria, TM7, Proteobacteria, Euryarchaeota, Spirochaetes, Cyanobacteria, Tenericutes, Planctomycetes, and Other Phyla_. For the High-RFI group there are 18 observations for familes, _Ruminococcaceae, Prevotellaceae, Order Clostridiales, Order Bacteroidales, Lachnospiraceae, RF16, Methanobacteriaceae, F16, Paraprevotellaceae, S24-7, Coriobacteriaceae, Erysipelotrichaceae*, Bifidobacteriaceae, Spirochaetaceae, Streptococcaceae, Mogibacteriaceae, Succinivibrionaceae, Other Families_. While in the Low RFI group there are 17 observations, _Ruminococcaceae*, Prevotellaceae, Order Bacteroidales, Order Clostridiales, Lachnospiraceae, Bifidobacteriaceae, F16, RF16, Paraprevotellaceae, Methanobacteriaceae, Spirochaetaceae, Erysipelotrichaceae, Coriobacteriaceae, Succinivibrionaceae, Order RF32, S24-7, Other Families_. In both High-RFI and Low-RFI steers we isolated 2 observations from archeal speacies, _Methanobrevibacter, Methanosphaera_. After the data was imported, missing values were removed, and columns were renamed. Barcharts were made for each individual time period to combine them in a graph that displayed changes overtime for each observation. 
 
 
+## Results and Discussion
+```{r setup, include=FALSE}
+library(here)
+source(here("./code/processing_code/processingscript.R"))
+
+```
+# Animal Performance 
+Feedlot cattle are typically fed high grain rations to maximize their rate of gain, as well as to increase intramuscular marbling and carcass quality (REF).  Grain diets utilize typically contain corn, which is high in starch, an easily fermentable carbohydrate that can alter the microbial population composition of the rumen REF. Performance and efficiency of each steer were individually assessed throughout the 82 d feedlot period by measuring DMI, ADG, feed:gain ratio, RFI, and subsequently using information on carcass traits such as hot carcass weights (HCW) and carcass marbling scores (Table 2). The most efficient steers (low-RFI) had a lower average DMI (P = 0.03) than did the least efficient (high-RFI). In addition, the average difference in RFI between the least and the most efficient groups was 1.85 kg DMI/day (P = 0.003). It was expected that more efficient animals would have a lower DMI and lower RFI, which has been seen in both dairy and beef cattle [18]. Differences in feed efficiency occur due to many factors, including ruminal and gastrointestinal production of methane, and feed intake levels affect methane production [19]. Ruminal methane production can represent a loss of Carbon and energy up to 12% of the dietary energy to the animal.  Therefore, in the current study, the higher proportion of methane-producing microorganisms detected in the rumen of high-RFI (lower efficiency) steers at the end of the feedlot period (Figure 2; discussed in more detail below) was possibly related to their lower feed efficiency. Moreover, more efficient animals (low-RFI) had a lower feed:gain ratio than did the lower efficiency animals (high-RFI), although this was not statistically significant (P = 0.37). Marbling scores, HCW, and ADG were very similar (P  0.49) between the two groups of steers. 
+
+```{r warning=FALSE, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(pander)
+linearMod3table <- readRDS(here("././results/linearMod3table.rds"))
+animalPerformance <- readRDS(here("././data/processed_data/processed_data_animal_performance.rds"))
+
+animalPerformance <- na.omit(animalPerformance)
+
+pander(animalPerformance)
+pander(linearMod3table)
+
+
+```
+
+_Table 1. Animal performance data observed during the finishing period according to Residual Feed Intake (RFI) classification in feedlot steers (n=5/group)_
+
+
+# Bacterial Populations 
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in high-RFI steers"}
+
+knitr::include_graphics("../../results/Highphylacomb.png")
+```
+
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+
+knitr::include_graphics("../../results/Lowphylacomb.png")
+
+```
+
+
+Rumen fluid samples identified 10 phyla with relative abundance equal or greater than 0.2% in both high-RFI (low efficiency) and low-RFI (high efficiency) steers (Tables 3 and 4). The relative abundance of predominant phyla varied both over the course of the feedlot period, as well as between high- and low-RFI steers. At the beginning of the feedlot period, Bacteroidetes, Firmicutes, and Actinobacteria were the most predominant phyla for both high- and low-RFI steers, accounting for more than 90% of the total OTU in these steers. However, at the end of the feedlot period, the top 3 phyla were Firmicutes, followed by Bacteroidetes and Proteobacteria, composing more than 90% of the OTU.
+
+The populations of Firmicutes in the most efficient animals (i.e. low-RFI) increased (P = 0.02) by the end of the feedlot period (Table 4); however, a similar increase occurred in the least efficient animals (high-RFI), although this increase was not as extensive (P = 0.08). Additionally, there was a decrease (P = 0.09) in the abundance of Bacteroidetes in the rumen of least efficient animals during the feedlot period. Interestingly, a lower phylum with a lower abundance in the rumen, Euryarchaeota, was significantly higher (P = 0.01) in the least efficient steers, along with a higher Firmicutes:Bacteroidetes ratio (P = 0.05; Table 3). The phylum Euryarchaeota contains a diverse group of obligate anaerobic methanogens [20]. An increase in the abundance of Euryarchaeota subsequently resulted in an increase in families Methanobrevibacter and Methanosphaera within this phylum.
+
+Prevotellaceae was the most prevalent family identified in both groups of steers at the beginning of the feedlot period, with relative abundances averaging 37 to 38% of the total population for both RFI groups (Figure 1). However, at the end of the feedlot period, Prevotellaceae were significantly decreased (P = 0.05) in the rumen of both high- and low-RFI steers (to 14 and 20%, respectively; Figure 1).  The family Prevotellacea consists of amylolytic gram negative bacterium that proliferate rapidly in the presence of high-starch diets such as feedlot diets [22] [23] [24]. Thus, the decrease of Prevotellaceae observed in both groups of steers during the feedlot phase when cattle were fed a high starch containing diet was unexpected. However, the family Ruminococcaceae contains ruminal fiber degrading bacteria [25]; [26]),  and the abundance of Ruminococcaceae numerically increased in both groups of steers, which could mitigatethe potential negative effects of low rumen pH. Ruminococcaceae were increased in the most efficient animals (Figure 1; P = 0.04), whereas, in the least efficient animals, this increase was less extensive (P = 0.17). We suggest that pH stabilization which allowed more extensive fiber degradation to occur, could be one of the mechanisms leading to the difference in the efficiency groups.
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
+
+knitr::include_graphics("../../results/Highfamilycomb.png")
+
+```
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+
+knitr::include_graphics("../../results/Lowfamilycomb.png")
+
+```
+
+More changes occurred at the family level throughout the feedlot period, but these changes occurred in bacterial families with smaller relative populations and were limited to occurring in the least efficient (high-RFI) steers. For example, the abundance of Erysipelotrichaceae decreased (beginning: 1.2%, end: 0.7%; (P = 0.01), while the family Methanobacteriaceae decreased (P = 0.01) in abundance (beginning: 1.2%, end: 2.0%). Although Methanobacteriaceae and Erysipelotrichaceae have lower abundances in the rumen, the drastic decrease in Prevotellaceae, could have been enough to impact these populations by opening a niche for occupation. Populations that comprise small proportions of the overall ruminal population (e.g.,  methanogenic archaea), are more sensitive to changes in diversity and richness [27].
+
+Two archaeal genera were identified in the rumen of the present steers in the feedlot: Methanobrevibacter and Methanosphaera. In the least efficient steers (high-RFI), there was an increase in Methanobrevibacter (P = 0.01) and (P = 0.09) in Methanosphaera (P = 0.09) during the feedlot period (Figure 2). In the most efficient (low-RFI) steers however, the changes in Methanobrevibacter and Methanosphaera populations were not significant (P  0.83). Archaea are metabolically diverse organisms that in the rumen live along with bacteria and protozoa by providing a reducing equivalent sink that allows NADH to be regenerated in the highly reduced ruminal environment [28]. In addition to volatile fatty acids (VFA), the ruminal microbial fermentation also produces H2, CO2, and CH4, which are not utilized by the host [29]. Methane is released by the animal primarily through eructation and can be a loss of up to 5-7% of the dietary feed energy to cattle [30, 31]. Thus, this potent greenhouse gas poses an environmental threat and negatively impacts the productivity of the host since it is literally a waste of energy. Therefore, ruminal Methanobrevibacter and Methanosphaera populations having the greatest increase in the least efficient steers (high-RFI) indicated that there was probably a greater waste of their energy intake in the form of methane, contributing to their poorer feed efficiency.
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
+
+knitr::include_graphics("../../results/Highgenuscomb.png")
+
+```
+
+```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+
+knitr::include_graphics("../../results/Lowgenuscomb.png")
+
+```
+
+# Alpha Diversity 
+
+The number of observed OTUs increased numerically in both low and high RFI groups during the feedlot period, however, those differences were not statistically significant (P  0.14; Table 5). The Chao1 index was also increased in both groups of steers during the feedlot phase, especially in high-RFI steers, for which a trend (P = 0.07) compared with low-RFI steers (P = 0.22). The Chao1 index estimates microbial diversity while accounting for rare species present [32]. Therefore, the trend observed in the high-RFI steers may be a result of the increased methanogenic archaea observed in this group, which are relatively low in abundance. Microbial diversity expressed as Shannon index had increased ruminal diversity in high-RFI steers (P = 0.10)  at the end of the feedlot phase, whereas, no differences were observed in low-RFI steers (P = 0.41). Faith’s Phylogenetic Diversity index measures the phylogenetic history of taxa in a sample [33], and . did not indicate differences (P  0.20) for either group of steers across the feedlot period.
+
+```{r warning=FALSE, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(pander)
+
+alpha_diversity_high <- readRDS(here("./data/processed_data/processed_data_alpha_diversity_hi.rds"))
+linearMod1table <- readRDS(here("././results/linearMod1table.rds"))
+
+alpha_diversity_high <- na.omit(alpha_diversity_high)
+
+pander(alpha_diversity_high)
+pander(linearMod1table)
+
+
+```
+_Table 4. Alpha diversity metrics observed during the finishing period according to High-Residual Feed Intake (RFI) classification_
+
+
+```{r warning=FALSE, echo=FALSE}
+
+library(ggplot2)
+library(dplyr)
+library(pander)
 
 
 
 
+
+alpha_diversity_low <- readRDS(here("./data/processed_data/processed_data_alpha_diversity_low.rds"))
+
+linearMod1table <- readRDS(here("././results/linearMod1table.rds"))
+modelSummarytable <- readRDS(here("././results/modelSummarytable.rds"))
+
+alpha_diversity_low <- na.omit(alpha_diversity_high)
+
+pander(alpha_diversity_low)
+pander(modelSummarytable)
+
+```
+
+_Table 5. Alpha diversity metrics observed during the finishing period according to Low-Residual Feed Intake (RFI) classification_
 
 ## Univariate analysis
 _Use a combination of text/tables/figures to explore and describe your data. You should produce plots or tables or other summary quantities for most of your variables. You definitely need to do it for the important variables, i.e. if you have main exposure or outcome variables, those need to be explored. Depending on the total number of variables in your dataset, explore all or some of the others._
 
 
-![Figure 1. Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in high-RFI steers] (../..results/Highphylacomb.png)
+
 
 
 
@@ -80,7 +199,6 @@ _Create plots or tables and compute simple statistics (e.g. t-tests, simple regr
 ## Full analysis
 _Use one or several suitable statistical/machine learning methods to analyze your data and to produce meaningful figures, tables, etc. This might again be code that is best placed in one or several separate R scripts that need to be well documented. You can then load the results produced by this code_
 
-# Discussion
 
 ## Summary and Interpretation
 _Summarize what you did, what you found and what it means._
@@ -89,7 +207,7 @@ _Summarize what you did, what you found and what it means._
 _Discuss what you perceive as strengths and limitations of your analysis._
 
 ## Conclusions
-_What are the main take-home messages?_
+Animal performance is impacted by shifts in the microbial composition in the rumen. Despite the limitations in sample size in the present study, we observed an increase Ruminococcaceae in the rumen of the most efficient steers, suggesting that a greater extent of fiber degradation could be expected in the rumen of those animals, which may in turn have resulted in a more stable pH. All the observed changes in the microbial populations provided a healthier ruminal environment and would result in potentially more energy harvested from the diet by the symbiosis of the microbial population and the steers, allowing those steers to be more efficient. Conversely, the less efficient steers had an increased population of the methanogenic archaea Methanobrevibacter and Methanosphaera during their feedlot period, suggesting that a greater waste of energy as ruminal methane, compared to the most efficient steers. Further studies should be conducted to investigate the smaller microbial populations to more deeply understand the rumen microbiome holistically and how it changes over time during different production periods and diets. As we develop a more comprehensive understanding of the rumen microbiome and its function and impact on the animal, further advancements can be made towards decreasing production costs, improving management strategies, and increasing energetic efficiency.
 
 
 _Include citations in your Rmd file using bibtex, the list of references will automatically be placed at the end_

@@ -17,6 +17,54 @@ library(dplyr)
 library(tidyverse)
 
 
+###Alpha Diversity: High
+
+#Load data, path is relative to project directory. Select a file and read the data into a data frame.
+alpha_diversity_hi <- read.csv(here("data", "raw_data", "Alpha_Diversity_high.csv"))
+
+#Take a look at the data
+head(alpha_diversity_hi)
+
+#Make a subset of this data frame without P to recalculate that value in our own analysis
+alpha_diversity_hi =subset(alpha_diversity_hi, select = -c(`P.value`))
+
+#Take a look at the data
+head(alpha_diversity_hi)
+saveRDS(alpha_diversity_hi, file = here("./data/processed_data/processed_data_alpha_diversity_hi.rds"))
+
+###Alpha Diversity: Low
+
+#Load data, path is relative to project directory. Select a file and read the data into a data frame.
+alpha_diversity_low <- read.csv(here("data", "raw_data", "Alpha_Diversity_Low.csv"))
+
+#Take a look at the data
+head(alpha_diversity_low)
+
+#Make a subset of this data frame without P to recalculate that value in our own analysis
+alpha_diversity_low =subset(alpha_diversity_low, select = -c(`P.value`))
+
+#Take a look at the data
+head(alpha_diversity_low)
+
+saveRDS(alpha_diversity_low, file = here("./data/processed_data/processed_data_alpha_diversity_low.rds"))
+
+
+###Alpha Diversity: Animal Performance
+
+#Load data, path is relative to project directory. Select a file and read the data into a data frame.
+animalPerformance <- read.csv(here("data", "raw_data", "AnimalPerformance.csv"))
+
+#Take a look at the data
+head(animalPerformance)
+
+#Make a subset of this data frame without P to recalculate that value in our own analysis
+animalPerformance =subset(animalPerformance, select = -c(`P.value`))
+
+#Take a look at the data
+head(animalPerformance)
+
+saveRDS(animalPerformance, file = here("./data/processed_data/processed_data_animal_performance.rds"))
+
 
 ###Phylum:High RFI
 
@@ -199,3 +247,4 @@ saveRDS(familytest, file = here("./data/processed_data/processeddata_familydata.
 saveRDS(familytest2, file = here("./data/processed_data/processeddata_familydata2.rds"))
 saveRDS(genustest, file = here("./data/processed_data/processeddata_genusdata.rds"))
 saveRDS(genustest2, file = here("./data/processed_data/processeddata_genusdata2.rds"))
+

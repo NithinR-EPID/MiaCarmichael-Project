@@ -71,12 +71,9 @@ HPplotcomb <- ggplot(phylacomb, aes(fill=Phyla, y=Abundance, x=Period)) +
 ggsave(filename = here("././results/Highphylacomb.png"),plot=HPplotcomb)
 
 
-#ANOVA
-
+#Linear Model/ANOVA 
 #Transform data into tibble
 as_tibble(phylatest)
-
-
 
 
 ###Phylum: Low RFI
@@ -84,6 +81,7 @@ as_tibble(phylatest)
 
 #load data. path is relative to project directory.
 phyladata2<- readRDS("././data/processed_data/processeddata_phyladata2.rds")
+phylatest2 <- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
 
 #An initial plot is created showing the composition of phyla at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file.
 
@@ -131,6 +129,10 @@ LPplotcomb <- ggplot(phylacomb2, aes(fill=Phyla, y=Abundance, x=Period)) +
 #Save graph
 ggsave(filename = here("././results/Lowphylacomb.png"),plot=LPplotcomb)
 
+#Linear Model/ANOVA prep
+
+#Transform data into tibble
+as_tibble(phylatest2)
 
 
 
@@ -301,6 +303,94 @@ LGplotcomb <- ggplot(genuscomb2, aes(fill=Genus, y=Abundance, x=Period)) +
 
 #Save graph
 ggsave(filename = here("././results/Lowgenuscomb.png"),plot=LGplotcomb)
+
+
+### Alpha diversity - high
+
+#Load Data
+alpha_diversity_high <- readRDS("./data/processed_data/processed_data_alpha_diversity_hi.rds")
+
+#Take a look at the data and rename variables
+head(alpha_diversity_high)
+Item <- alpha_diversity_high$Item
+Beginning <- alpha_diversity_high$Beginning
+End <- alpha_diversity_high$End
+datafri <- data.frame(Item, Beginning, End)
+print(datafri)
+cor(datafri$Beginning, datafri$End)
+stacked <- stack(datafri)
+stacked
+
+#Create linear model and ANOVA 
+results <- aov(values ~ ind, data = stacked)
+summary(results)
+linearMod1 <- lm(Beginning ~ End, data=datafri)
+print(linearMod1)
+Anova(linearMod1, type="III")
+modelSummary <- summary(linearMod1)
+print(modelSummary)
+
+# save chart with p-value
+saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_hihg_alpha_lm.RData")
+
+
+### Alpha diversity - low
+
+#Load Data
+alpha_diversity_low <- readRDS("./data/processed_data/processed_data_alpha_diversity_low.rds")
+
+#Take a look at the data and rename variables as needed
+head(alpha_diversity_low)
+Item <- alpha_diversity_low$Item
+Beginning <- alpha_diversity_low$Beginning
+End <- alpha_diversity_low$End
+datafri <- data.frame(Item, Beginning, End)
+cor(datafri$Beginning, datafri$End)
+stacked <- stack(datafri)
+stacked
+
+
+#Create Linear Model and ANOVA
+results <- aov(values ~ ind, data = stacked)
+summary(results)
+linearMod1 <- lm(Beginning ~ End, data=datafri)
+Anova(linearMod1, type="III")
+modelSummary <- summary(linearMod1)
+print(modelSummary)
+
+
+# save chart with p-value
+saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_low_alpha_lm.RData")
+
+
+### Animal Performance
+animal_performance <- readRDS("./data/processed_data/processed_data_animal_performance.rds")
+
+#Take a look at the data and rename variables as needed
+head(animal_performance)
+Item <- animal_performance$Item
+High <- animal_performance$High
+Low <- animal_performance$Low
+data_frame_performance <- data.frame(Item, High, Low)
+cor(data_frame_performance$High, data_frame_performance$Low)
+stacked <- stack(data_frame_performance)
+stacked
+
+#Create Linear Model and ANOVA
+results <- aov(values ~ ind, data = stacked)
+summary(results)
+linearMod3 <- lm(High ~ Low, data=data_frame_performance)
+Anova(linearMod3, type="III")
+modelSummary <- summary(linearMod3)
+print(modelSummary)
+
+# save chart with p-value
+saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_performance_lm.RData")
+
+
+
+
+
 
 
 
