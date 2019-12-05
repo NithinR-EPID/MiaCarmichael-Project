@@ -14,15 +14,15 @@ csl: ../apa.csl
 ---
 
 
-## Summary/Abstract
-_Write a summary of your project._
+## Abstract
+The ruminal microbiota of cattle allows them to convert low quality feedstuffs such as forages into higher quality human foods via microbial fermentation. The relative abundance and diversity of the resident microbiota changes throughout the course of the gastrointestinal tract, and this population contributes to the feed efficiency of cattle. This study assessed the relationship between cattle feed efficiency and their ruminal microbial populations during their feedlot period. A group of 65 Angus steers were fed a commercial finishing diet for 82 days and their growth performance was evaluated, including: dry matter intake (DMI), average daily gain ADG, and residual feed intake (RFI) using a Grow-Safe® system. Steers were ranked based upon their RFI, and the 5 lowest RFI (high efficiency) and 5 highest RFI (lowest efficiency) were selected.  Ruminal samples were collected at the beginning and end of the trial.
+DNA was extracted from the samples, and the 16S rRNA gene was sequenced. There were no significant differences (P = 0.82) in ADG between the two groups of steers; however, the most efficient animals had a lower (P = 0.03) DMI and lower (P = 0.003) RFI. The less-efficient steers had a higher population (P = 0.01) of Methanobrevibacter in their rumens during the feedlot period and tended (P = 0.09) to have greater abundances of Methanosphaera. In the rumen of the high-efficient steers, abundance of Ruminococcaceae was significantly greater (P = 0.04) over the course of the study. These findings suggest that the most efficient steers had a microbial population that favored greater extent of fiber degradation in their rumens, which likely resulted in more energy harvested from their diets, and a more stable pH during the day, contributing to a better feed efficiency. Conversely, the increased abundances of the methanogenic archaea Methanobrevibacter and Methanosphaera in the less-efficient steers suggested that greater amounts of dietary energy were lost as methane in these steers, likely contributing to their lower feed efficiency.
 
-## Introduction (required for part 1)
 
-# General Background Information
-The symbiotic relationship between ruminants and their ruminal microbial population allows cattle to occupy an ecological niche in which they have the ability to convert fibrous feedstuffs into higher quality end products via fermentation. Ruminants themselves do not produce fiber degrading enzymes, but they harbor bacteria, fungi, and protozoa that can [1]. 
-According to [2], feed inputs are the largest variable costs associated with producing beef, as they are directly related to 75% of the cost of producing finished cattle [3]. Continuing to improve animal efficiency can result in a decrease in feeding costs for producers and decrease environmental impacts. Residual Average Daily Gain (RADG) is one of the latest feed efficiency selection tools adopted by the American Angus Association in their selection programs. RADG is heritable, and it can be a predictor of a sire’s genetic ability for postweaning gain in future progeny compared to that of other sires, given a constant amount of feed consumed (American Angus Association, 2015). This allows producers to select for genetics that increase the efficiency of finishing cattle in a feedlot environment.
-Previous studies have shown de association between the ruminal microbiota and cattle feed efficiency (Hernandez-Sanabria et al., 2012; Shabat et al., 2016), so the current study was performed to further understand this relationship. More specifically, the objective of this study was to assess the relationship between cattle feed efficiency during the feedlot-finishing phase and their ruminal microbiotas at two distinct time points: at the beginning and end of the feedlot phase.
+## Introduction 
+The symbiotic relationship between ruminant animals and their resident ruminal microbial consortium allows ruminants, such as cattle, to occupy a specific ecological niche because of their ability to convert fibrous feedstuffs into high quality food products via microbial fermentation. Because mammals do not produce fiber degrading enzymes, ruminants are entirely dependent on the  ability of the ruminal bacteria, fungi, and protozoa to degrade cellulose [1].  
+Within the U.S Cattle Production industry, feedlots are the finishing stage for cattle with a focus on feeding a predominantly grain diet in favor of improved feed efficiency, and efficient bone and muscle tissue growth [2]. Cereal grains are a major energy source for cows due to their high concentrations of starch, a component that is almost completely and uniformly digested in the gastrointestinal tract when adequately processed [3]. Ultimately on a grain diet, energy density is increased and therefore production can be optimized in a well-managed intensive feedlot system [4]. Feed costs are the largest variable expense associated with producing beef cattle [5], accounting for approximately 75% of the cost of producing finished cattle [6]. Improving efficiency will both decrease feeding costs and decrease environmental impacts of beef and dairy production. Residual Average Daily Gain (RADG) is a feed efficiency selection tool adopted by the American Angus Association in their breeding selection programs because of its high degree of heritability [7]. RADG is heritable (~0.3 [8]), and it can be a predictor of a sire’s genetic ability for postweaning gain in future progeny compared to that of other sires, given a constant amount of feed consumed This allows producers to select for genetics that increase the efficiency of finishing cattle in a feedlot environment.  
+Previous studies have shown a close association between the ruminal microbiota fermentation and cattle feed efficiency [9-11]. Therefore, the current study was designed to correlate the composition of the ruminal microbiome at the beginning and end of the feedlot phase with fermentation metabolites and growth efficiency measures of steers
 
 
 # Description of data and data source
@@ -31,7 +31,7 @@ g
 # Questions/Hypotheses to be addressed
 In my project I am trying to answer what changes occur in the rumen microbiome of a feedlot cow on a high starch diet. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes. In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methane producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
 
-## Methods and Results
+## Materials and Methods 
 
 Animals, experimental design, and management
 
@@ -49,10 +49,10 @@ Sequencing data were demultiplexed and downloaded as FASTQ files. Pair-end reads
 
 Statistical Analysis
 
-## Data aquisition
+# Data aquisition
 The data described was collected from a total of 65 steers, and of those 65 steers, 12 were selected based on their predicted EPDs. Of those 12 steers, the 5 most efficient and 5 least efficient according to residual feed intake (RFI) were selected for analysis of their ruminal microbiomes. Each file for the raw data is located within file ./data/raw_data.csv. 
 
-## Data import and cleaning
+# Data import and cleaning
 The data is imported from multiple .csv files. For both Low-RFI and High-RFI there are 11 observations from phyla, _Firmicutes, Bacteroidetes, Actinobacteria, TM7, Proteobacteria, Euryarchaeota, Spirochaetes, Cyanobacteria, Tenericutes, Planctomycetes, and Other Phyla_. For the High-RFI group there are 18 observations for familes, _Ruminococcaceae, Prevotellaceae, Order Clostridiales, Order Bacteroidales, Lachnospiraceae, RF16, Methanobacteriaceae, F16, Paraprevotellaceae, S24-7, Coriobacteriaceae, Erysipelotrichaceae*, Bifidobacteriaceae, Spirochaetaceae, Streptococcaceae, Mogibacteriaceae, Succinivibrionaceae, Other Families_. While in the Low RFI group there are 17 observations, _Ruminococcaceae*, Prevotellaceae, Order Bacteroidales, Order Clostridiales, Lachnospiraceae, Bifidobacteriaceae, F16, RF16, Paraprevotellaceae, Methanobacteriaceae, Spirochaetaceae, Erysipelotrichaceae, Coriobacteriaceae, Succinivibrionaceae, Order RF32, S24-7, Other Families_. In both High-RFI and Low-RFI steers we isolated 2 observations from archeal speacies, _Methanobrevibacter, Methanosphaera_. After the data was imported, missing values were removed, and columns were renamed. Barcharts were made for each individual time period to combine them in a graph that displayed changes overtime for each observation. 
 
 
@@ -189,6 +189,9 @@ The changes in the abundance of phyla over the duration of the feedlot period ar
 
 
 ```{r}
+
+
+
 
 ```
 _Bacterial abundance* (phyla level) observed at the beginning and end of the finishing period for high-residual feed intake (RFI) Angus steers (n = 5 steers). *Only phyla with average abundance ≥ 0.2% are shown. P-value for the contrast between beginning and end of the feedlot-finishing period_ 
