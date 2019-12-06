@@ -49,7 +49,7 @@ Period <- c(rep("Beginning",11),  rep("End",11))
 
 Phyla <- rep(c("Firmicutes", "Bacteroidetes", 
                "Actinobacteria", "TM7", "Proteobacteria", "Euryarchaeota", "Spirochaetes", "Cyanobacteria", 
-               "Tenericutes", "Planctomycetes", "Other Phyla"),2) 
+               "Tenericutes", "Planctomycetes", "Other_Phyla"),2) 
 
 Abundance <- c(41.34, 47.34, 3.01, 0.97, 1.24, 1.05, 1.40, 0.32, 0.49, 0.35, 2.49, 60.37, 25.98, 1.56, 2.27, 2.01, 2.12, 0.53, 0.89, 0.44, 0.39, 3.43)
 
@@ -59,6 +59,7 @@ phylacomb <- data.frame(Period, Phyla, Abundance)
 #Remove missing data
 phylacomb <- drop_na(phylacomb)
 dim(phylacomb)
+saveRDS(phylacomb, file= here("././results/phylacomb.rds"))
 
 #Graph combined dataset
 HPplotcomb <- ggplot(phylacomb, aes(fill=Phyla, y=Abundance, x=Period)) +
@@ -117,6 +118,7 @@ phylacomb2 <- data.frame(Period, Phyla, Abundance)
 #Remove missing data
 phylacomb2 <- drop_na(phylacomb2)
 dim(phylacomb2)
+saveRDS(phylacomb2, file= here("././results/phylacomb2.rds"))
 
 #Graph combined dataset
 LPplotcomb <- ggplot(phylacomb2, aes(fill=Phyla, y=Abundance, x=Period)) +

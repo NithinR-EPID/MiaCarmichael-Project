@@ -1,0 +1,139 @@
+---
+title: "Supplemental Material"
+subtitle: ""
+author: Mia Carmichael
+institute: "University of Georgia"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: article
+output:
+  bookdown::word_document2: 
+    toc: false
+bibliography: ../references.bib
+csl: ../apa.csl
+---
+
+```{r, echo=FALSE, warning=FALSE}
+library(dplyr)
+library(pander)
+library(knitr)
+library(here)
+library(car)
+library(ggplot2)
+library(broom)
+
+phyladata<- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
+phylatest <- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
+phylacomb <- readRDS(here("././results/phylacomb.rds"))
+
+phyladata2<- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
+phylatest2 <- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
+phylacomb2 <- readRDS(here("././results/phylacomb.rds"))
+
+```
+
+
+## Bivariate Analysis
+Bacterial abundance verses time period. ANOVA allows us to see that there is variance between the bacterial abundance at beginning and end of the feedlot period in High-RFI steers (Table 5, Table 6). This indicates that the microbiome did experieience changes over the course of the feedlot period.
+
+Looking at the correlation, we can see that there is a high positive correlation between the change from the beginning of the feedlot period to the end of the feeddlot period for phyla,  and therefore the correlation between them will be closer to 1.
+
+# Looking at ANOVA
+```{r, warning=FALSE, echo=FALSE}
+# High
+plot(Abundance ~ Phyla, data = phylacomb)
+phylahigh.aov <- aov(Abundance ~ Phyla, data = phylacomb)
+summary(phylahigh.aov)
+phylahigh.aovsummary <- summary(phylahigh.aov)
+print(phylahigh.aovsummary)
+
+saveRDS(phylahigh.aovsummary, file = here("./results/phylahigh_aov_table.rds"))
+
+
+
+# Low
+plot(Abundance ~ Phyla, data = phylacomb2)
+phylalow.aov2 <- aov(Abundance ~ Phyla, data = phylacomb2)
+summary(phylalow.aov2)
+phylalow.aovsummary2 <- summary(phylalow.aov2)
+print(phylalow.aovsummary2)
+
+saveRDS(phylalow.aovsummary2, file = here("./results/phyla_low_aov_table.rds"))
+
+
+
+
+```
+
+
+# Looking at a correlation between data points at the beginning and end of feedlot period
+```{r, warning=FALSE, echo=FALSE}
+
+#High
+phylacor <- cor(phylatest$Beginning, phylatest$End)
+
+phylacor.table <-broom::tidy(phylacor)
+phylacor.table
+saveRDS(phylacor.table, file = here("./results/phylahightablecor.rds"))
+
+
+#Low
+phylacor2 <- cor(phylatest2$Beginning, phylatest2$End)
+
+phylacor2.table <-broom::tidy(phylacor2)
+phylacor2.table
+saveRDS(phylacor2.table, file = here("./results/phylahightablecor2.rds"))
+
+
+```
+
+
+# Looking at Linear Model
+```{r, echo=FALSE, warning=FALSE}
+
+# High
+linearMod.1 <- lm(Beginning ~ End, data = phylatest)
+print(linearMod.1)
+summary(linearMod.1)
+
+Anova(linearMod.1, type = "III")
+modelSummary.1 <- summary(linearMod.1)
+print(modelSummary.1)
+
+# Place results back into a data frame
+linearMod.1table <-broom::tidy(modelSummary.1)
+linearMod.1table
+
+# Save chart with p-value
+saveRDS(linearMod.1table, file = here ("././results/linearMod_1table.rds"))
+
+# Low
+linearMod.2 <- lm(Beginning ~ End, data = phylatest2)
+print(linearMod.2)
+summary(linearMod.2)
+
+Anova(linearMod.2, type = "III")
+modelSummary.2 <- summary(linearMod.2)
+print(modelSummary.2)
+
+# Place results back into a data frame
+linearMod.2table <-broom::tidy(modelSummary.2)
+linearMod.2table
+
+# Save chart with p-value
+saveRDS(linearMod.2table, file = here ("././results/linearMod_2table.rds"))
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
