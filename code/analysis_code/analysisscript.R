@@ -51,7 +51,7 @@ Phyla <- rep(c("Firmicutes", "Bacteroidetes",
                "Actinobacteria", "TM7", "Proteobacteria", "Euryarchaeota", "Spirochaetes", "Cyanobacteria", 
                "Tenericutes", "Planctomycetes", "Other Phyla"),2) 
 
-Abundance <- c(34.95, 48.73, 7.21, 1.81, 1.48, 1.28, 1.31, 0.39, 0.16, 0.21, 2.46, 55.14, 33.04, 1.29, 2.06, 2.31, 1.39, 0.81, 0.33, 0.46, 0.27, 2.91)
+Abundance <- c(41.34, 47.34, 3.01, 0.97, 1.24, 1.05, 1.40, 0.32, 0.49, 0.35, 2.49, 60.37, 25.98, 1.56, 2.27, 2.01, 2.12, 0.53, 0.89, 0.44, 0.39, 3.43)
 
 #Combine datasets 
 phylacomb <- data.frame(Period, Phyla, Abundance)
@@ -115,7 +115,7 @@ Abundance <- c(34.95, 48.73, 7.21, 1.81, 1.48, 1.28, 1.31, 0.39, 0.16, 0.21, 2.4
 phylacomb2 <- data.frame(Period, Phyla, Abundance)
 
 #Remove missing data
-phylacomb2 <- drop_na(phylacomb)
+phylacomb2 <- drop_na(phylacomb2)
 dim(phylacomb2)
 
 #Graph combined dataset
@@ -331,7 +331,14 @@ modelSummary <- summary(linearMod1)
 print(modelSummary)
 
 # save chart with p-value
-saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_hihg_alpha_lm.RData")
+saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_high_alpha_lm.rds")
+
+#Place results back into a data frame
+linearMod1table <-broom::tidy(linearMod3)
+linearMod1table
+
+# save chart with p-value
+saveRDS(linearMod1table, file = here ("././results/linearMod1table.rds"))
 
 
 ### Alpha diversity - low
@@ -349,7 +356,6 @@ cor(datafri$Beginning, datafri$End)
 stacked <- stack(datafri)
 stacked
 
-
 #Create Linear Model and ANOVA
 results <- aov(values ~ ind, data = stacked)
 summary(results)
@@ -360,11 +366,20 @@ print(modelSummary)
 
 
 # save chart with p-value
-saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_low_alpha_lm.RData")
+saveRDS(Anova(modelSummary, type="III"), file = "./results/resulttable_low_alpha_lm.rds")
+
+#Place results back into a data frame
+modelSummarytable <-broom::tidy(modelSummary)
+modelSummarytable
+
+# save chart with p-value
+saveRDS(modelSummarytable, file = here ("././results/modelSummarytable.rds"))
+
 
 
 ### Animal Performance
 animal_performance <- readRDS("./data/processed_data/processed_data_animal_performance.rds")
+
 
 #Take a look at the data and rename variables as needed
 head(animal_performance)
@@ -384,9 +399,12 @@ Anova(linearMod3, type="III")
 modelSummary <- summary(linearMod3)
 print(modelSummary)
 
-# save chart with p-value
-saveRDS(Anova(linearMod1, type="III"), file = "./results/resulttable_performance_lm.RData")
 
+#Place results back into a data frame
+linearMod3table <-broom::tidy(linearMod3)
+linearMod3table
+# save chart with p-value
+saveRDS(linearMod3table, file = here ("././results/linearMod3table.rds"))
 
 
 
