@@ -233,4 +233,38 @@ Animal performance is impacted by shifts in the microbial composition in the rum
 
 
 # References
+1.	Russell, J.B. and J.L. Rychlik, Factors that alter rumen microbial ecology. Science, 2001. 292(5519): p. 1119-22.
+2.	Service, U.S.D.o.A.E.R. Cattle and Beef: Sector at a Glance 2019; Available from: https://www.ers.usda.gov/topics/animal-products/cattle-beef/.
+3.	Nocek, J.E. and S. Tamminga, Site of Digestion of Starch in the Gastrointestinal Tract of Dairy Cows and Its Effect on Milk Yield and Composition. 1991. 74(10): p. 3598-3629.
+4.	Huntington, G.B., Starch utilization by ruminants: from basics to the bunk. Journal of Animal Science, 1997. 75(3): p. 852.
+5.	Lancaster, P.A., et al., Phenotypic and genetic relationships of residual feed intake with performance and ultrasound carcass traits in Brangus heifers1. Journal of Animal Science, 2009. 87(12): p. 3887-3896.
+6.	Hill, R.A., Feed Efficiency in the Beef Industry. 2012, Somerset, UNITED STATES: John Wiley & Sons, Incorporated.
+7.	Sally North, B.B., American Angus Association. By the Numbers. Angus feed efficiency selection tool: RADG 2010; Available from: http://www.angus.org/nce/documents/bythenumbersradg.pdf.
+8.	Association, A.A. Angus National Cattle Evaluations Fall 2019. 2019; Available from: http://www.angus.org/Nce/Heritabilities.aspx.
+9.	Hernandez-Sanabria, E., et al., Impact of Feed Efficiency and Diet on Adaptive Variations in the Bacterial Community in the Rumen Fluid of Cattle. Applied and Environmental Microbiology, 2012. 78(4): p. 1203-1214.
+10.	Nkrumah, J.D., et al., Relationships of feedlot feed efficiency, performance, and feeding behavior with metabolic rate, methane production, and energy partitioning in beef cattle1. Journal of Animal Science, 2006. 84(1): p. 145-153.
+11.	Shabat, S.K.B., et al., Specific microbiome-dependent mechanisms underlie the energy harvest efficiency of ruminants. The ISME Journal, 2016. 10(12): p. 2958-2972.
+12.	Detweiler, R.A., et al., The impact of selection using residual average daily gain and marbling EPDs on growth, performance, and carcass traits in Angus steers1. J Anim Sci, 2019. 97(6): p. 2450-2459.
+13.	Council, N.R., Nutrient Requirements of Beef Cattle: Seventh Revised Edition: Update 2000. 2000, Washington, DC: The National Academies Press. 248.
+14.	Lourenco, J.M., et al., Analysis of the Rumen Microbiota of Beef Calves Supplemented During the Suckling Phase. Frontiers in Microbiology, 2019. 10(1131).
+15.	Rothrock, M.J., Jr., et al., A hybrid DNA extraction method for the qualitative and quantitative assessment of bacterial communities from poultry production samples. J Vis Exp, 2014(94).
+16.	Klindworth, A., et al., Evaluation of general 16S ribosomal RNA gene PCR primers for classical and next-generation sequencing-based diversity studies. Nucleic Acids Res, 2013. 41(1): p. e1.
+17.	Caporaso, J.G., et al., QIIME allows analysis of high-throughput community sequencing data. Nat Methods, 2010. 7(5): p. 335-6.
+18.	Elolimy, A.A., et al., Residual feed intake in beef cattle and its association with carcass traits, ruminal solid-fraction bacteria, and epithelium gene expression. J Anim Sci Biotechnol, 2018. 9: p. 67.
+19.	Johnson, K.A. and D.E. Johnson, Methane emissions from cattle. J Anim Sci, 1995. 73(8): p. 2483-92.
+20.	Holmes, D.E. and J.A. Smith, Biologically Produced Methane as a Renewable Energy Source. 2016, Elsevier. p. 1-61.
+21.	Turnbaugh, P.J., et al., An obesity-associated gut microbiome with increased capacity for energy harvest. Nature, 2006. 444: p. 1027.
+22.	Mackie, R.I. and F.M. Gilchrist, Changes in Lactate-Producing and Lactate-Utilizing Bacteria in Relation to pH in the Rumen of Sheep During Stepwise Adaptation to a High-Concentrate Diet. Appl Environ Microbiol, 1979. 38(3): p. 422-30.
+23.	Goad, D.W., C.L. Goad, and T.G. Nagaraja, Ruminal microbial and fermentative changes associated with experimentally induced subacute acidosis in steers. J Anim Sci, 1998. 76(1): p. 234-41.
+24.	Slyter, L.L., Ability of pH-Selected Mixed Ruminal Microbial Populations to Digest Fiber at Various pHs. Applied and environmental microbiology, 1986. 52(2): p. 390-391.
+25.	Leschine, S.B., Cellulose degradation in anaerobic environments. Annu Rev Microbiol, 1995. 49: p. 399-426.
+26.	Rainey, F., Bergey’s Manual of Systematic Bacteriology. 2nd ed. Family VIII. Ruminococcaceae fam., ed. H. Dordrecht, London and New York: Springer. Vol. 3. 2009.
+27.	Hooper, D., et al., Effects of Biodiversity on Ecosystem Functioning: A Consensus of Current Knowledge. Ecological Monographs, 2005. 75: p. 3-35.
+28.	Rothschild, L.J. and R.L. Mancinelli, Life in extreme environments. Nature, 2001. 409(6823): p. 1092-1101.
+29.	van Houtert, M.F.J., The production and metabolism of volatile fatty acids by ruminants fed roughages: A review. Animal Feed Science and Technology, 1993. 43(3): p. 189-225.
+30.	Arndt, C., et al., Feed conversion efficiency in dairy cows: Repeatability, variation in digestion and metabolism of energy and nitrogen, and ruminal methanogens. Journal of Dairy Science, 2015. 98(6): p. 3938-3950.
+31.	Johnson, K.A. and D.E. Johnson, Methane emissions from cattle. J. Anim. Sci., 1995. 73: p. 2483-2494.
+32.	Chao, A., Nonparametric Estimation of the Number of Classes in a Population. Scandinavian Journal of Statistics, 1984. 11(4): p. 265-270.
+33.	Faith, D.P., Conservation evaluation and phylogenetic diversity. Biological Conservation, 1992. 61(1): p. 1-10.
+23. 	American Angus Association (2015).  General  minimum  guidelines  for recording individual feed intake in growing bulls, steer and heifer progeny. Accessed Jun 25, 2019. http://www.angus.org/Performance/Documents/FeedIntakeGuidelines.pdf.
 

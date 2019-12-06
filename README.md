@@ -1,6 +1,6 @@
-# Overview
+# Mia Carmichael's class project overview
 
-A template file and folder structure for a data analysis project/paper done with R/Rmarkdown/Github. 
+All code chunks in `products/manuscript/ProjectTemplate.Rmd` pull from other files (`processing_code`, `analysis_code`, `supplementmat`, etc) in order to run this project. 
 
 # Pre-requisites
 
