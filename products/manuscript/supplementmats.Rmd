@@ -191,7 +191,7 @@ The value of the Hopkins statistic is significantly < 0.5 (0.94368), indicating 
 Estimate the number of clusters in the data, method 1
 ```{r, echo=FALSE, warning=FALSE}
 
-#As k-means clustering requires to specify the number of clusters to generate, we’ll use the function clusGap() [cluster package] to compute gap statistics for estimating the optimal number of clusters . The function fviz_gap_stat() [factoextra] is used to visualize the gap statistic plot.
+#k-means clustering requires to specify the number of clusters to generate, use the function clusGap() to compute gap statistics for estimating the optimal number of clusters . The function fviz_gap_stat() is used to visualize the gap statistic plot.
 
 
 #Compute gap statistic
@@ -287,7 +287,7 @@ saveRDS(family.all, file= here("././results/family.all.rds"))
 
 familydistance <- get_dist(family.all) 
 saveRDS(familydistance, file= here("././results/familydistance.rds"))
-D2 <- fviz_dist(familydistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Genus Distance Matrix")
+D2 <- fviz_dist(familydistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Family Distance Matrix")
 
 
 #Assessing Clusterability
@@ -352,7 +352,7 @@ view(genus.all)
 
 #Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
 
-family.all <- scale(genus.all)
+genus.all <- scale(genus.all)
 head(genus.all)
 saveRDS(genus.all, file= here("././results/genus.all.rds"))
 
@@ -363,7 +363,7 @@ saveRDS(genus.all, file= here("././results/genus.all.rds"))
 genusdistance <- get_dist(genus.all) 
 saveRDS(genusdistance, file= here("././results/genusdistance.rds"))
 
-D3 <- fviz_dist(genusdistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Phyla Distance Matrix")
+D3 <- fviz_dist(genusdistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Genera Distance Matrix")
 
 
 #Assessing Clusterability
@@ -372,16 +372,16 @@ genus.all.hop <- get_clust_tendency(genus.all, 3, graph = TRUE)
 View(genus.all.hop)
 genus.all.hop$hopkins_stat
 
-#The value of the Hopkins statistic is significantly < 0.5 (0.9881), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
+#The value of the Hopkins statistic is not significant > 0.5 (0.4842), indicating that the data is not highly clusterable. Additionally, It can be seen that the ordered dissimilarity image does not contains patterns (i.e., clusters).
 
 
-#K-means clustering using eclust(). Doesnt allow duplicate row names, will have to change. 
+#K-means clustering using eclust(). 
 
-K3 <-eclust(family.all, "kmeans", nstart = 25, k.max = 2 )
+K3 <-eclust(genus.all, "kmeans", nstart = 25, k.max = 2 )
 saveRDS(K3, file= here("././results/K3.rds"))
 
 #Gap statistic plot
-G3 <-fviz_gap_stat(K3$gap_stat)  + ggtitle("Family Gap Statistic Plot")
+G3 <-fviz_gap_stat(K3$gap_stat)  + ggtitle("Genera Gap Statistic Plot")
 
 
 # Silhouette plot: was unable to produce silhouette plot for genera. 
