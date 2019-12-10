@@ -56,7 +56,7 @@ The data described was collected from a total of 65 steers, and of those 65 stee
 The data is imported from multiple .csv files. For both Low-RFI and High-RFI there are 11 observations from phyla, _Firmicutes, Bacteroidetes, Actinobacteria, TM7, Proteobacteria, Euryarchaeota, Spirochaetes, Cyanobacteria, Tenericutes, Planctomycetes, and Other Phyla_. For the High-RFI group there are 18 observations for familes, _Ruminococcaceae, Prevotellaceae, Order Clostridiales, Order Bacteroidales, Lachnospiraceae, RF16, Methanobacteriaceae, F16, Paraprevotellaceae, S24-7, Coriobacteriaceae, Erysipelotrichaceae*, Bifidobacteriaceae, Spirochaetaceae, Streptococcaceae, Mogibacteriaceae, Succinivibrionaceae, Other Families_. While in the Low RFI group there are 17 observations, _Ruminococcaceae*, Prevotellaceae, Order Bacteroidales, Order Clostridiales, Lachnospiraceae, Bifidobacteriaceae, F16, RF16, Paraprevotellaceae, Methanobacteriaceae, Spirochaetaceae, Erysipelotrichaceae, Coriobacteriaceae, Succinivibrionaceae, Order RF32, S24-7, Other Families_. In both High-RFI and Low-RFI steers we isolated 2 observations from archeal speacies, _Methanobrevibacter, Methanosphaera_. After the data was imported, missing values were removed, and columns were renamed. Barcharts were made for each individual time period to combine them in a graph that displayed changes overtime for each observation. 
 
 
-## Results and Discussion (Full Analysis)
+## Results and Discussion 
 ```{r setup, include=FALSE}
 library(here)
 source(here("./code/processing_code/processingscript.R"))
@@ -219,7 +219,85 @@ pander(linearMod.2table)
 ```
 
 
+## Full analysis: K- Means Cluster Analysis
+```{r, echo=FALSE, warning=FALSE }
 
+library(tidyverse)
+library(factoextra)
+library(FactoMineR)
+library(cluster)
+library(ggplot2)
+library(dplyr)
+library(pander)
+
+#phylum
+phyla.all <- readRDS(here("././results/phyla.all.rds"))
+phyladistance <- readRDS(here("././results/phyladistance.rds"))
+K1 <- readRDS(here("././results/K1.rds"))
+hc.phyla <- readRDS(here("././results/hc.phyla.rds"))
+
+#family
+family.all <- readRDS(here("././results/family.all.rds"))
+familydistance <- readRDS(here("././results/familydistance.rds"))
+K2 <- readRDS(here("././results/K2.rds"))
+hc.family <- readRDS(here("././results/hc.family.rds"))
+
+#genera
+genus.all <- readRDS(here("././results/genus.all.rds"))
+genusdistance <- readRDS(here("././results/genusdistance.rds"))
+K3 <- readRDS(here("././results/K3.rds"))
+hc.genus <- readRDS(here("././results/K3.rds"))
+
+#all
+all.km <- readRDS(here("././results/all.km.rds"))
+all.dist <- readRDS(here("././results/all.dist.rds"))
+all.gap <- readRDS(here("././results/all.gap.rds"))
+all.hsil <-readRDS(here("././results/all.hsil.rds"))
+all.sil <- readRDS(here("././results/all.sil.rds"))
+all.hier <- readRDS(here("././results/all.hier.rds"))
+all.hsp <-readRDS(here("././results/all.hsp.rds"))
+
+
+```
+
+```{r, all.km, echo=FALSE, warning=FALSE}
+
+knitr::include_graphics("././results/all.km.png")
+plot(all.km)
+
+```
+
+```{r, all.dist, echo=FALSE, warning=FALSE}
+
+knitr::include_graphics("././results/all.dist.png")
+
+```
+
+```{r, all.gap, echo=FALSE, warning=FALSE}
+knitr::include_graphics("././results/all.gap.png")
+plot(all.gap)
+```
+
+```{r, all.sil, echo=FALSE, warning=FALSE}
+knitr::include_graphics("././results/all.sil.png")
+plot(all.sil)
+```
+
+```{r, all.hier, echo=FALSE, warning=FALSE}
+knitr::include_graphics("././results/all.hier.png")
+plot(all.hier)
+
+```
+
+```{r, all.hsil, echo=FALSE, warning=FALSE}
+knitr::include_graphics("././results/all.hsil.png")
+plot(all.hsil)
+```
+
+```{r, all.hsp, echo=FALSE, warning=FALSE}
+knitr::include_graphics("././results/all.hsp.png")
+plot(all.hsp)
+```
 
 ## Summary and Interpretation
 In my statistical analysis I looked at bacterial abundance verses time period. ANOVA allows us to see that there is variance between the bacterial abundance at beginning and end of the feedlot period in High-RFI steers and Low-RFI steers (Table 6, Table 7). This indicates that the microbiome did experieience changes over the course of the feedlot period. In my supplemental materials file I also looked at the correlation bewteen factors, we can see that there is a high positive correlation between the change from the beginning of the feedlot period to the end of the feeddlot period for phyla in each group. Therefore the correlation between them will be closer to 1, as shown to be .88 in this analysis. The shifts in the microbiome differ between the RFI groups, which is indictive that microbial composition can effect animal performance. 
