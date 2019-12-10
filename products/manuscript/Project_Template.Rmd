@@ -29,7 +29,7 @@ Previous studies have shown a close association between the ruminal microbiota f
 This study was conducted as a smaller portion of a larger study [4]. Briefly, for 5 offspring generations, commercial Angus cows were bred to determine the effect of selection based on RADG and marbling expected progeny differences (EPDs) on animal productivity, performance, and carcass quality. The current study utilized the fifth generation of steers born in that selection program and analyzed their performance in a feedlot-finishing system. The study was conducted on a commercial feedlot (Ridgefield Farm L.L.C.; Brasstown, North Carolina; 35.0391° N, 83.9576°W) from March 8, 2018 to May 29, 2018. A total of 65 steers were used, and of those 65 steers, 12 were selected based on their predicted EPDs. Of those 12 steers, the 5 most efficient and 5 least efficient according to residual feed intake (RFI) were selected for analysis of their ruminal microbiomes. Data was further processed 
 g
 # Questions/Hypotheses to be addressed
-In my project I am trying to answer what changes occur in the rumen microbiome of a feedlot cow on a high starch diet, and do those changes differ between groups resulting in variance in performance levles. It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes. In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methane producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
+In my project I am trying to answer what changes occur in the rumen microbiome of a feedlot cow on a high starch diet, and do those changes differ between groups (low-RFI and high-RFI) resulting in variance in performance levles. Does selecting for heritable traits (RFI status) also relate to microbiome composition? It will be interesting to see the trends and how the microbial profile and end products change as the nutrient availability changes. In the rumen there are multiple classes of microbes, including fiber degrading, starch degrading, and methane producing bacteria. As the feedstuff changes, the abundance of specific microorganisms will as well, which dictate other outcomes as well, pH, VFA profile, ammonia production, and methane production. The implications of this study can aid in further manipulation of the diet and cow to improve feed efficiency, production costs, and envirornmental outputs. 
 
 ## Materials and Methods 
 
@@ -270,7 +270,7 @@ plot(all.km)
 ```{r, all.dist, echo=FALSE, warning=FALSE}
 
 knitr::include_graphics("././results/all.dist.png")
-
+plot(all.dist)
 ```
 
 ```{r, all.gap, echo=FALSE, warning=FALSE}
