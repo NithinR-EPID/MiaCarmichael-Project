@@ -1,10 +1,10 @@
 # Mia Carmichael's class project overview
 
 All code chunks in `products/manuscript/ProjectTemplate.Rmd` pull from other files (`processing_code`, `analysis_code`, `supplementmat`, etc) in order to run this project follow this
-1. run processingscrip.R  `code/processing_code/processingscrip.R`
-2. run analysisscript.R `code/analysis_code/analysisscript.R`
-3. run supplementary material `products/manuscript/supplementmats.Rmd`
-4. run ProjectTemplate.RMD in `products/manuscript/ProjectTemplate.Rmd`
+1. run processingscrip.R  `code/processing_code/processingscrip.R`, raw data is processed here from  raw data `data/raw_data` and saved in processed data `data/processed_data`.
+2. run analysisscript.R `code/analysis_code/analysisscript.R`, figures are saved in results
+3. run supplementary material `products/manuscript/supplementmats.Rmd`, figures and tables saved in results 
+4. run ProjectTemplate.RMD in `products/manuscript/ProjectTemplate.Rmd`, figures and tables saved in results 
 
 # Pre-requisites
 
