@@ -86,13 +86,13 @@ _Table 1. Animal performance data observed during the finishing period according
 
 # Bacterial Populations 
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 1. Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in high-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in high-RFI steers"}
 
 knitr::include_graphics("../../results/Highphylacomb.png")
 ```
 
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 2. Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the phyla level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
 
 knitr::include_graphics("../../results/Lowphylacomb.png")
 
@@ -105,13 +105,13 @@ The populations of Firmicutes in the most efficient animals (i.e. low-RFI) incre
 
 Prevotellaceae was the most prevalent family identified in both groups of steers at the beginning of the feedlot period, with relative abundances averaging 37 to 38% of the total population for both RFI groups (Figure 3, Figure 4). However, at the end of the feedlot period, Prevotellaceae were significantly decreased in the rumen of both high- and low-RFI steers (to 14 and 20%, respectively; Figure 1).  The family Prevotellacea consists of amylolytic gram negative bacterium that proliferate rapidly in the presence of high-starch diets such as feedlot diets [22] [23] [24]. Thus, the decrease of Prevotellaceae observed in both groups of steers during the feedlot phase when cattle were fed a high starch containing diet was unexpected. However, the family Ruminococcaceae contains ruminal fiber degrading bacteria [25]; [26]),  and the abundance of Ruminococcaceae numerically increased in both groups of steers, which could mitigatethe potential negative effects of low rumen pH. Ruminococcaceae were increased in the most efficient animals (Figure 4), whereas, in the least efficient animals, this increase was less extensive. We suggest that pH stabilization which allowed more extensive fiber degradation to occur, could be one of the mechanisms leading to the difference in the efficiency groups.
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 3. Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
 
 knitr::include_graphics("../../results/Highfamilycomb.png")
 
 ```
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 4. Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the family level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
 
 knitr::include_graphics("../../results/Lowfamilycomb.png")
 
@@ -121,13 +121,13 @@ More changes occurred at the family level throughout the feedlot period, but the
 
 Two archaeal genera were identified in the rumen of the present steers in the feedlot: Methanobrevibacter and Methanosphaera. In the least efficient steers (high-RFI), there was an increase in Methanobrevibacter  and in Methanosphaera during the feedlot period (Figure 5, Figure 6). In the most efficient (low-RFI) steers however, the changes in Methanobrevibacter and Methanosphaera populations were not significant. Archaea are metabolically diverse organisms that in the rumen live along with bacteria and protozoa by providing a reducing equivalent sink that allows NADH to be regenerated in the highly reduced ruminal environment [28]. In addition to volatile fatty acids (VFA), the ruminal microbial fermentation also produces H2, CO2, and CH4, which are not utilized by the host [29]. Methane is released by the animal primarily through eructation and can be a loss of up to 5-7% of the dietary feed energy to cattle [30, 31]. Thus, this potent greenhouse gas poses an environmental threat and negatively impacts the productivity of the host since it is literally a waste of energy. Therefore, ruminal Methanobrevibacter and Methanosphaera populations having the greatest increase in the least efficient steers (high-RFI) indicated that there was probably a greater waste of their energy intake in the form of methane, contributing to their poorer feed efficiency.
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 5. Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in High-RFI steers"}
 
 knitr::include_graphics("../../results/Highgenuscomb.png")
 
 ```
 
-```{r warning=FALSE, echo=FALSE, fig.cap= "Figure 6. Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
+```{r warning=FALSE, echo=FALSE, fig.cap= "Bacterial abundance at the genus level in ruminal samples collected at the beginning and end of the feedlot period in Low-RFI steers"}
 
 knitr::include_graphics("../../results/Lowgenuscomb.png")
 
@@ -153,7 +153,9 @@ pander(linearMod1table)
 
 
 ```
-_Table 4. Alpha diversity metrics observed during the finishing period according to High-Residual Feed Intake (RFI) classification_
+
+_Table 2. Alpha diversity metrics observed during the finishing period according to High-Residual Feed Intake (RFI) classification_
+
 
 
 ```{r warning=FALSE, echo=FALSE}
@@ -178,13 +180,16 @@ pander(modelSummarytable)
 
 ```
 
-_Table 5. Alpha diversity metrics observed during the finishing period according to Low-Residual Feed Intake (RFI) classification_
+
+_Table 3. Alpha diversity metrics observed during the finishing period according to Low-Residual Feed Intake (RFI) classification_
 
 
 
 # Bivariate analysis: ANOVA and Linear Models
 
-The changes in the abundance of phyla over the duration of the feedlot period are difficult to view in Fig. 1 and Fig.1. To take a closer look at the relation between period and RFI group, factors beginning, end, and phyla will be analyzed using a linear fit model and ANOVA. 
+
+Question: Did the microbiome experience change over the course of the feedlot period? Did RFI status have an effect on this change? 
+The changes in the abundance of phyla over the duration of the feedlot period are difficult to view in Fig. 1 and Fig.2. To take a closer look at the relation between period and RFI group, factors beginning, end, and phyla will be analyzed using a linear fit model and ANOVA. 
 
 ```{r phylahigh.aovsummary, warning=FALSE, echo=FALSE, fig.cap= "_Table 6. Bacterial abundance* (phyla level) observed at the beginning and end of the finishing period for high-residual feed intake (RFI) Angus steers (n = 5 steers). *Only phyla with average abundance ≥ 0.2% are shown"}
 
@@ -200,26 +205,35 @@ phylalow.aovsummary2 <- readRDS(here("./results/phyla_low_aov_table.rds"))
 pander(phylalow.aovsummary2)
 ```
 
-ANOVA allows us to see that there is variance between the bacterial abundance at beginning and end of the feedlot period in High-RFI steers (Table 5, Table 6). This indicates that the microbiome did experieience changes over the course of the feedlot period.
+ANOVA allows us to see that there is variance between the bacterial abundance at beginning and end of the feedlot period in High-RFI steers (Table 2, Table 3). This indicates that the microbiome did experieience changes over the course of the feedlot period. There is also an idication that high-RFI cows had more variance in their data set and possibly experienced more change over time due to their RFI status.  
 
 
 
-```{r linearMod.1table, echo=FALSE, warning=FALSE, fig.cap="Table 8. Linear Model in High RFI-steers, bacterial abundance verses time period."}
+```{r linearMod.1table, echo=FALSE, warning=FALSE}
 
 linearMod.1table <- readRDS(here("././results/linearMod_1table.rds"))
 pander(linearMod.1table)
 ```
+_Table 8A. Linear Model in High RFI-steers, bacterial abundance verses time period._
 
-
-```{r linearMod.2table, echo=FALSE, warning=FALSE, fig.cap="Table 8. Linear Model in Low RFI-steers, bacterial abundance verses time period."}
+```{r linearMod.2table, echo=FALSE, warning=FALSE}
 
 linearMod.2table <- readRDS(here("././results/linearMod_2table.rds"))
 pander(linearMod.2table)
 
 ```
+_Table 8B. Linear Model in Low RFI-steers, bacterial abundance verses time period._
 
 
-## Full analysis: K- Means Cluster Analysis
+
+## Full analysis
+# K- Means Cluster Analysis
+
+Clustering helps find subgroups of observations within a data set. By clustering observations, the desired outcome is to have observations in the same group to be similar and observations in different groups to be dissimilar. Therefor, this method seeks to find relationships between the observations without being trained by a response variable. Finally clustering allows the idenification of which observations are alike and further categorize them.
+
+Question: Does RFI status affect bacterial abundance over time? Will there be distinct clusters specific to each RFI group as time progresses?
+
+
 ```{r, echo=FALSE, warning=FALSE }
 
 library(tidyverse)
@@ -231,19 +245,19 @@ library(dplyr)
 library(pander)
 
 #phylum
-phyla.all <- readRDS(here("././results/phyla.all.rds"))
+phyla.all1 <- readRDS(here("././results/phyla.all1.rds"))
 phyladistance <- readRDS(here("././results/phyladistance.rds"))
 K1 <- readRDS(here("././results/K1.rds"))
 hc.phyla <- readRDS(here("././results/hc.phyla.rds"))
 
 #family
-family.all <- readRDS(here("././results/family.all.rds"))
+family.all1 <- readRDS(here("././results/family.all1.rds"))
 familydistance <- readRDS(here("././results/familydistance.rds"))
 K2 <- readRDS(here("././results/K2.rds"))
 hc.family <- readRDS(here("././results/hc.family.rds"))
 
 #genera
-genus.all <- readRDS(here("././results/genus.all.rds"))
+genus.all1 <- readRDS(here("././results/genus.all1.rds"))
 genusdistance <- readRDS(here("././results/genusdistance.rds"))
 K3 <- readRDS(here("././results/K3.rds"))
 hc.genus <- readRDS(here("././results/K3.rds"))
@@ -260,44 +274,118 @@ all.hsp <-readRDS(here("././results/all.hsp.rds"))
 
 ```
 
-```{r, all.km, echo=FALSE, warning=FALSE}
+
+```{r, all.gap, echo=FALSE, warning=FALSE, fig.cap= "Gap Statistic for Phyla, Family, and Genera" }
+knitr::include_graphics("././results/all.gap.png")
+plot(all.gap)
+```
+The gap statistic is calculated to determine the optimal number of clusters the K-Means Cluster should have. A 10,5, and 3 cluster solution are offered for Phyla, Family, and Genera. Family and phyla appear to be highly clustered compared to gerera. 
+
+
+```{r, all.km, echo=FALSE, warning=FALSE, fig.cap= "K-means Clusters for Phyla, Family, and Genera."}
 
 knitr::include_graphics("././results/all.km.png")
 plot(all.km)
 
+
 ```
+The Hopkins statistic was also calculated for each level (supplementmats.RMD). We can conduct the Hopkins Statistic test iteratively, using 0.5 as the threshold to reject the alternative hypothesis. That is, if H < 0.5, then it is unlikely that a bacterial class has statistically significant clusters. If the value of Hopkins statistic is close to 1, then we can reject the null hypothesis and conclude that the dataset is significantly a clusterable data. The value of the Hopkins statistic was significant for Phyla < 0.5 (0.94368), and Family < 0.5 (0.9490412). However the Hopkins statistic was > 0.5 (0.4842) for Genera, indicating that genera aren't significantly significant. Also, this could be due to the smaller dataset for genera opposed to family and phyla. It does appear that bacterial abundance over time is clustered with its prospective RFI group. 
 
-```{r, all.dist, echo=FALSE, warning=FALSE}
-
-knitr::include_graphics("././results/all.dist.png")
-plot(all.dist)
-```
-
-```{r, all.gap, echo=FALSE, warning=FALSE}
-knitr::include_graphics("././results/all.gap.png")
-plot(all.gap)
-```
-
-```{r, all.sil, echo=FALSE, warning=FALSE}
+```{r, all.sil, echo=FALSE, warning=FALSE, fig.cap= "Silhouette Measures for Phyla and Genera"}
 knitr::include_graphics("././results/all.sil.png")
 plot(all.sil)
 ```
+ Silhouette measures _(Si)_ how similar an object _(i)_ is to the the other objects in its own cluster versus those in the neighbor cluster. Silouette values range from 1 to - 1:  A value of _Si_ close to 1 indicates that the object is well clustered. In the other words, _i_ is similar to the other objects in its group. A value of _Si_ close to -1 indicates that the object is poorly clustered, and that assignment to some other cluster would probably improve the overall results.
+Both phyla and family have average _Si_ of >0.7 indicating that their objects within the clusters are very similar. The _Si_ that are zero in both bacterial levels are due to one bacterial group found in one RFI group and not another. 
 
-```{r, all.hier, echo=FALSE, warning=FALSE}
-knitr::include_graphics("././results/all.hier.png")
-plot(all.hier)
+
+Although genera had a lower Hopkins Statistic, it can be concluded for phyla and family RFI status can effect bacterial abundance over time. Bacteria tended to have different trends based on RFI classification. 
+
+```{r, echo=FALSE, warning=FALSE}
+library(huxtable)
+library(ggstance)
+library(factoextra)
+library(FactoMineR)
+library(cluster)
+
+F2 <- readRDS(file = here("././results/F2.rds"))
+F1 <- readRDS(file = here("././results/F1.rds"))
+mod2sum <- readRDS(file = here("././results/mod2sum.rds"))
+mod1sum <- readRDS(file = here("././results/mod1sum.rds"))
+plotmod2 <- readRDS(file= here("././results/plotmod2.rds"))
+plotmod2sum <- readRDS(file = here("././results/plotmod2sum.rds"))
+plotmod2sum2 <- readRDS(file = here("././results/plotmod2sum2.rds"))
+expmod2.3 <- readRDS(file = here("././results/expmod2.3.rds"))
+
 
 ```
 
-```{r, all.hsil, echo=FALSE, warning=FALSE}
-knitr::include_graphics("././results/all.hsil.png")
-plot(all.hsil)
+
+
+# Linear Regression Model
+
+
+Simple Linear Regression: Abundance difference ~ RFI Status
+Question: How does bacterial abundance over time change based on RFI Status?
+
+
+```{r, mod1sum, echo=FALSE, warning=FALSE, fig.cap= "Linear regression model for the relationship between the change in phyla bacterial abundance and RFI status"}
+
+mod1sum <- readRDS(file = here("././results/mod1sum.rds"))
+pander(mod1sum)
+```
+In order to get a better insight on this model, a multiple regression model might be more appropiate. 
+
+
+Multiple Linear Regression: Abundance_Difference ~ RFI_Status + Bacterial.Family
+```{r, mod2sum, echo=FALSE, warning=FALSE, fig.cap= "Multiple Regression Model for the relationship of Bacterial Family, RFI status, and the change in bacterial abundance over time"}
+mod2sum <- readRDS(file = here("././results/mod2sum.rds"))
+pander(mod2sum)
+
+```
+Approximately 98% of variation in family abundance over time can be explained by RFI status and classification of bacterial families. 
+
+
+
+
+Ploting Multiple Regression Model: Abundance_Difference ~ RFI_Status + Bacterial.Family
+```{r, plotmod2, echo=FALSE, warning=FALSE, fig.cap= "Fig. Differing scales of the varibles in model" }
+plotmod2 <- readRDS(file= here("././results/plotmod2.rds"))
+plot(plotmod2)
 ```
 
-```{r, all.hsp, echo=FALSE, warning=FALSE}
-knitr::include_graphics("././results/all.hsp.png")
-plot(all.hsp)
+
+```{r, expmod2.3, echo=FALSE, warning=FALSE, fig.cap= "Table outputs of Multiple Regression Model: Abundance_Difference ~ RFI_Status + Bacterial.Family" }
+
+expmod2.3 <- readRDS(file = here("././results/expmod2.3.rds"))
+view(expmod2.3)
+
+
 ```
+
+
+Although the regression model fit the data, lets try another model as an option as well. 
+# Looking at other models: Logistic Regression Model
+```{r, echo=FALSE, warning=FALSE}
+mod3sum <- readRDS(file = here("././results/mod3sum.rds"))
+mod4sum <- readRDS(file = here("././results/mod4sum.rds"))
+mod5sum <- readRDS(file = here("././results/mod5sum.rds"))
+```
+
+```{r, mod3sum, echo=FALSE, warning=FALSE, fig.cap= "Logistic Regression Model: RFI_Status ~ Abundance_Difference"}
+
+mod3sum <- readRDS(file = here("././results/mod3sum.rds"))
+pander(mod3sum)
+```
+
+
+```{r, mod5sum, echo=FALSE, warning=FALSE, fig.cap="Logistic Regression Model: RFI_Status ~ Family + Abundance_Difference + Bacterial.Family" }
+mod5sum <- readRDS(file = here("././results/mod5sum.rds"))
+pander(mod5sum)
+
+```
+The linear regression model seemed to fit the data best and answer the questions presented by this data set. 
+
 
 ## Summary and Interpretation
 In my statistical analysis I looked at bacterial abundance verses time period. ANOVA allows us to see that there is variance between the bacterial abundance at beginning and end of the feedlot period in High-RFI steers and Low-RFI steers (Table 6, Table 7). This indicates that the microbiome did experieience changes over the course of the feedlot period. In my supplemental materials file I also looked at the correlation bewteen factors, we can see that there is a high positive correlation between the change from the beginning of the feedlot period to the end of the feeddlot period for phyla in each group. Therefore the correlation between them will be closer to 1, as shown to be .88 in this analysis. The shifts in the microbiome differ between the RFI groups, which is indictive that microbial composition can effect animal performance. 

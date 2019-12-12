@@ -21,16 +21,47 @@ library(here)
 library(car)
 library(ggplot2)
 library(broom)
+library(caret)
+library(vip)
+library(jtools)
+library(mlr)
+library(ggstance)
+library(huxtable)
+library(readr)
+library(tidyverse)
+library(base)
 
-phyladata<- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
-phylatest <- readRDS(here("././data/processed_data/processeddata_phyladata.rds"))
+
+
+
+
+phyladata<- readRDS(here("./data/processed_data/processeddata_phyladata.rds"))
+phylatest <- readRDS(here("./data/processed_data/processeddata_phylatest.rds"))
 phylacomb <- readRDS(here("././results/phylacomb.rds"))
 
-phyladata2<- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
-phylatest2 <- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
-phylacomb2 <- readRDS(here("././results/phylacomb.rds"))
+phyladata2<- readRDS(here("./data/processed_data/processeddata_phyladata2.rds"))
+phylatest2 <- readRDS(here("./data/processed_data/processeddata_phylatest2.rds"))
+phylacomb2 <- readRDS(here("././results/phylacomb2.rds"))
+
+familydata<- readRDS(here("./data/processed_data/processeddata_familydata.rds"))
+familytest <- readRDS(here("./data/processed_data/processeddata_familytest.rds"))
+
+
+familydata2<- readRDS(here("./data/processed_data/processeddata_familydata2.rds"))
+familytest2 <- readRDS(here("./data/processed_data/processeddata_familytest2.rds"))
+
+
+genusdata<- readRDS(here("./data/processed_data/processeddata_genusdata.rds"))
+genustest <- readRDS(here("./data/processed_data/processeddata_genustest.rds"))
+
+
+genusdata2<- readRDS(here("./data/processed_data/processeddata_genusdata2.rds"))
+genustest2 <- readRDS(here("./data/processed_data/processeddata_genustest2.rds"))
+
 
 ```
+
+
 
 
 ## Bivariate Analysis
@@ -70,6 +101,7 @@ saveRDS(phylalow.aovsummary2, file = here("./results/phyla_low_aov_table.rds"))
 ```{r, warning=FALSE, echo=FALSE}
 
 #High
+library(flextable)
 phylacor <- cor(phylatest$Beginning, phylatest$End)
 
 phylacor.table <-broom::tidy(phylacor)
@@ -148,31 +180,33 @@ library(cluster)
 ```{r, phyladata,phyladata2, echo=FALSE, warning=FALSE}
 #Combine low and high RFI- Phyla
 phyla.all <- rbind(phyladata, phyladata2)
+phyla.all
 ```
 
 ```{r, phyla.all, echo=FALSE, warning=FALSE}
 #Rows are observations (individuals) and columns are variables
 sapply(phyla.all, class)
-phyla.all = subset(phyla.all, select = -c(`Phyla`))
-attr(phyla.all, "row.names") <- c("H-Firmicutes", "H-Bacteroidetes", "H-Actinobacteria", "H-Proteobacteria", "H-Euryarchaeota", "H-TM7", "H-Spirochaetes", "H-Tenericutes", "H-Cyanobacteria", "H-Planctomycetes", "H-OtherPhyla", "L-Firmicutes", "L-Bacteroidetes", "L-Actinobacteria", "L-TM7", "L-Proteobacteria", "L-Euryarchaeota", "L-Spirochaetes", "L-Cyanobacteria", "L-Tenericutes", "L-Planctomycetes", "L-OtherPhyla")
-view(phyla.all)
+phyla.all1=subset(phyla.all, select = -c(Phyla))
+attr(phyla.all1, "row.names") <- c("H-Firmicutes", "H-Bacteroidetes", "H-Actinobacteria", "H-Proteobacteria", "H-Euryarchaeota", "H-TM7", "H-Spirochaetes", "H-Tenericutes", "H-Cyanobacteria", "H-Planctomycetes", "H-OtherPhyla", "L-Firmicutes", "L-Bacteroidetes", "L-Actinobacteria", "L-TM7", "L-Proteobacteria", "L-Euryarchaeota", "L-Spirochaetes", "L-Cyanobacteria", "L-Tenericutes", "L-Planctomycetes", "L-OtherPhyla")
+view(phyla.all1)
+
 ```
 
 
 ```{r, echo=FALSE, warning=FALSE}
 #Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
 
-phyla.all <- scale(phyla.all)
-head(phyla.all)
-saveRDS(phyla.all, file= here("././results/phyla.all.rds"))
+phyla.all1 <- scale(phyla.all1)
+head(phyla.all1)
+saveRDS(phyla.all1, file= here("././results/phyla.all1.rds"))
 ```
 
 Clutering Distance Measures 
 get_dist: for computing a distance matrix between the rows of a data matrix. 
 fviz_dist: for visualizing a distance matrix
 
-```{r, phyla.all, echo=FALSE, warning=FALSE}
-phyladistance <- get_dist(phyla.all) 
+```{r, phyla.all1, echo=FALSE, warning=FALSE}
+phyladistance <- get_dist(phyla.all1) 
 saveRDS(phyladistance, file= here("././results/phyladistance.rds"))
 D1<-fviz_dist(phyladistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Phyla Distance Matrix")
 ```
@@ -180,10 +214,13 @@ D1<-fviz_dist(phyladistance, gradient = list(low= "#00AFBB", mid= "white", high=
 
 Assessing Clusterability
 ```{r, echo=FALSE, warning=FALSE}
+library(factoextra)
+library(ggplot2)
 #The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
-phyla.all.hop <- get_clust_tendency(phyla.all, 21, graph = TRUE)
-View(phyla.all.hop)
-phyla.all.hop$hopkins_stat
+phyla.allclust <- get_clust_tendency(phyla.all1, 21, graph = TRUE)
+phyla.allclust$hopkins_stat
+print(phyla.allclust$plot)
+ggsave(filename = here("./results/phylaclusterdistance.png"), plot = phyla.allclust$plot)
 
 ```
 The value of the Hopkins statistic is significantly < 0.5 (0.94368), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
@@ -196,7 +233,7 @@ Estimate the number of clusters in the data, method 1
 
 #Compute gap statistic
 set.seed(22)
-phyla.gap <- clusGap(phyla.all, FUN = kmeans, nstart = 25, K.max = 10, B = 100)
+phyla.gap <- clusGap(phyla.all1, FUN = kmeans, nstart = 25, K.max = 10, B = 100)
 
 #Plot the result
 fviz_gap_stat(phyla.gap)
@@ -205,18 +242,18 @@ fviz_gap_stat(phyla.gap)
 
 #Compute k-means clustering, k=7
 set.seed(22)
-km.phyla <- kmeans(phyla.all, 7, nstart = 25)
+km.phyla <- kmeans(phyla.all1, 7, nstart = 25)
 head(km.phyla$cluster, 22)
 
 #Visualize clusters using factoextra
-fviz_cluster(km.phyla, phyla.all)
+fviz_cluster(km.phyla, phyla.all1)
 
 
 #Cluster validation statistics: Inspect cluster silhouette plot
 #Silhouette measures (Si) how similar an object i is to the the other objects in its own cluster versus those in the neighbor cluster. Si
 #Si values range from 1 to - 1:
-sil.phyla <- silhouette(km.phyla$cluster, dist(phyla.all))
-rownames(sil.phyla) <- rownames(phyla.all)
+sil.phyla <- silhouette(km.phyla$cluster, dist(phyla.all1))
+rownames(sil.phyla) <- rownames(phyla.all1)
 head(sil.phyla)
 fviz_silhouette(sil.phyla)
   
@@ -231,7 +268,7 @@ K-means clustering using eclust(), method 2
 ```{r, echo=FALSE, warning=FALSE}
 
 #K-means 
-K1<-eclust(phyla.all, "kmeans", nstart = 25)
+K1<-eclust(phyla.all1, "kmeans", nstart = 25)
 saveRDS(K1, file= here("././results/K1.rds"))
 #Gap statistic plot
 G1 <- fviz_gap_stat(K1$gap_stat) + ggtitle("Phyla Gap Statistic Plot")
@@ -241,7 +278,7 @@ S1 <-fviz_silhouette(K1) + ggtitle("Phyla Silhouette Plot")
 
 #Enhanced hierarchical clustering
 
-hc.phyla <- eclust(phyla.all, "hclust")
+hc.phyla <- eclust(phyla.all1, "hclust")
 saveRDS(hc.phyla, file= here("././results/hc.phyla.rds"))
 
 H1 <- fviz_dend(hc.phyla, rect = TRUE) + ggtitle("Phyla Hierarchial Clustering")
@@ -267,41 +304,40 @@ Choose a method and do for all (phyla, family, and genus)
 # Family
 ```{r, echo=FALSE, warning=FALSE}
 #Combine low and high RFI- Family
-family.all  <- rbind(familydata, familydata2)
+family.all<- rbind(familydata, familydata2)
 
 #Rows are observations (individuals) and columns are variables
 sapply(family.all, class)
-family.all = subset(family.all, select = -c(`Family`))
-attr(family.all, "row.names") <- c("H-Ruminococcaceae", "H-Prevotellaceae", "H-Order Clostridiales", "H-Order Bacteroidales", "H-Lachnospiraceae", "H-RF16", "H-Methanobacteriaceae", "H-F16", "H-Paraprevotellaceae", "H-S24-7", "H-Coriobacteriaceae", "H-Erysipelotrichaceae", "H-Bifidobacteriaceae", "H-Spirochaetaceae", "H-Streptococcaceae", "H-Mogibacteriaceae", "H-Succinivibrionaceae", "H-Other Families" , "L-Ruminococcaceae", "L-Prevotellaceae", "L-Order Bacteroidales", "L-Order Clostridiales", "L-Lachnospiraceae", "L-Bifidobacteriaceae", "L-F16", "L-RF16", "L-Paraprevotellaceae", "L-Methanobacteriaceae", "L-Spirochaetaceae", "L-Erysipelotrichaceae", "L-Coriobacteriaceae", "L-Succinivibrionaceae", "L-Order RF32", "L-S24-7", "L-Other Families")
-view(family.all)
+family.all1 = subset(family.all, select = -c(`Family`))
+attr(family.all1, "row.names") <- c("H-Ruminococcaceae", "H-Prevotellaceae", "H-Order Clostridiales", "H-Order Bacteroidales", "H-Lachnospiraceae", "H-RF16", "H-Methanobacteriaceae", "H-F16", "H-Paraprevotellaceae", "H-S24-7", "H-Coriobacteriaceae", "H-Erysipelotrichaceae", "H-Bifidobacteriaceae", "H-Spirochaetaceae", "H-Streptococcaceae", "H-Mogibacteriaceae", "H-Succinivibrionaceae", "H-Other Families" , "L-Ruminococcaceae", "L-Prevotellaceae", "L-Order Bacteroidales", "L-Order Clostridiales", "L-Lachnospiraceae", "L-Bifidobacteriaceae", "L-F16", "L-RF16", "L-Paraprevotellaceae", "L-Methanobacteriaceae", "L-Spirochaetaceae", "L-Erysipelotrichaceae", "L-Coriobacteriaceae", "L-Succinivibrionaceae", "L-Order RF32", "L-S24-7", "L-Other Families")
+view(family.all1)
+```
 
+
+```{r, echo=FALSE, warning=FALSE}
 #Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
 
-family.all <- scale(family.all)
-head(family.all)
-saveRDS(family.all, file= here("././results/family.all.rds"))
-
-#Clutering Distance Measures
-#get_dist: for computing a distance matrix between the rows of a data matrix. 
-#fviz_dist: for visualizing a distance matrix
-
-familydistance <- get_dist(family.all) 
-saveRDS(familydistance, file= here("././results/familydistance.rds"))
-D2 <- fviz_dist(familydistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Family Distance Matrix")
+family.all <- scale(family.all1)
+head(family.all1)
+saveRDS(family.all1, file= here("././results/family.all1.rds"))
+```
 
 
+```{r, echo=FALSE, warning=FALSE}
 #Assessing Clusterability
 #The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
-family.all.hop <- get_clust_tendency(family.all, 34, graph = TRUE)
-View(family.all.hop)
+family.all.hop <- get_clust_tendency(family.all1, 34, graph = TRUE)
+
 family.all.hop$hopkins_stat
 
 #The value of the Hopkins statistic is significantly < 0.5 (0.9490412), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
+```
 
 
+```{r, echo=FALSE, warning=FALSE}
 #K-means clustering using eclust(). Doesnt allow duplicate row names, will have to change. 
 
-K2 <-eclust(family.all, "kmeans", nstart = 25)
+K2 <-eclust(family.all1, "kmeans", nstart = 25)
 saveRDS(K2, file= here("././results/K2.rds"))
 
 #Gap statistic plot
@@ -314,7 +350,7 @@ S2 <- fviz_silhouette(K2) + ggtitle("Family Silhouette Plot")
 
 #Enhanced hierarchical clustering
 
-hc.family <- eclust(family.all, "hclust")
+hc.family <- eclust(family.all1, "hclust")
 saveRDS(hc.family, file= here("././results/hc.family.rds"))
 
 H2 <-fviz_dend(hc.family, rect = TRUE) + ggtitle("Family Hierarchial Clustering")
@@ -346,30 +382,21 @@ genus.all <- rbind(genusdata, genusdata2)
 
 #Rows are observations (individuals) and columns are variables
 sapply(genus.all, class)
-genus.all = subset(genus.all, select = -c(`Genus`))
-attr(genus.all, "row.names") <- c("H-Methanobrevibacter","H-Methanosphaera","L-Methanobrevibacter", "L-Methanosphaera")
-view(genus.all)
+genus.all1 = subset(genus.all, select = -c(`Genus`))
+attr(genus.all1, "row.names") <- c("H-Methanobrevibacter","H-Methanosphaera","L-Methanobrevibacter", "L-Methanosphaera")
+view(genus.all1)
 
 #Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
 
-genus.all <- scale(genus.all)
-head(genus.all)
-saveRDS(genus.all, file= here("././results/genus.all.rds"))
-
-#Clutering Distance Measures
-#get_dist: for computing a distance matrix between the rows of a data matrix. 
-#fviz_dist: for visualizing a distance matrix
-
-genusdistance <- get_dist(genus.all) 
-saveRDS(genusdistance, file= here("././results/genusdistance.rds"))
-
-D3 <- fviz_dist(genusdistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Genera Distance Matrix")
+genus.all1 <- scale(genus.all1)
+head(genus.all1)
+saveRDS(genus.all1, file= here("././results/genus.all1.rds"))
 
 
 #Assessing Clusterability
 #The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
-genus.all.hop <- get_clust_tendency(genus.all, 3, graph = TRUE)
-View(genus.all.hop)
+genus.all.hop <- get_clust_tendency(genus.all1, 3, graph = TRUE)
+
 genus.all.hop$hopkins_stat
 
 #The value of the Hopkins statistic is not significant > 0.5 (0.4842), indicating that the data is not highly clusterable. Additionally, It can be seen that the ordered dissimilarity image does not contains patterns (i.e., clusters).
@@ -377,7 +404,7 @@ genus.all.hop$hopkins_stat
 
 #K-means clustering using eclust(). 
 
-K3 <-eclust(genus.all, "kmeans", nstart = 25, k.max = 2 )
+K3 <-eclust(genus.all1, "kmeans", nstart = 25, k.max = 2 )
 saveRDS(K3, file= here("././results/K3.rds"))
 
 #Gap statistic plot
@@ -389,7 +416,7 @@ G3 <-fviz_gap_stat(K3$gap_stat)  + ggtitle("Genera Gap Statistic Plot")
 
 #Enhanced hierarchical clustering
 
-hc.genus <- eclust(genus.all, "hclust", k = 2)
+hc.genus <- eclust(genus.all1, "hclust", k = 2)
 saveRDS(hc.genus, file= here("././results/hc.genus.rds"))
 
 H3 <-fviz_dend(hc.genus, rect = TRUE) + ggtitle("Genera Hierarchial Clustering")
@@ -419,6 +446,8 @@ saveRDS(SPH3, file = here("./results/SPH3.rds"))
 
 # Combine and save figures 
 ```{r, echo=FALSE, warning=FALSE}
+
+library(gridExtra)
 #Compile all Kmeans figures for comparison
 PK1 <- fviz_cluster(K1, geom = "point", data = df) + ggtitle("Phyla K-Means: k = 3")
 PK2 <- fviz_cluster(K2, geom = "point",  data = df) + ggtitle("Family K-Means: k = 7")
@@ -426,9 +455,6 @@ PK3 <- fviz_cluster(K3, geom = "point",  data = df) + ggtitle("Genra K-Means: k 
 
 library(gridExtra)
 all.km <-grid.arrange(PK1, PK2, PK3, nrow = 3) 
-
-#Compile all distance figures for comparison
-all.dist <- grid.arrange(D1, D2, D3, nrow= 3)
 
 #Compile all gap figures for comparison
 all.gap <- grid.arrange(G1,G2,G3, nrow = 3)
@@ -448,14 +474,13 @@ all.hsp <- grid.arrange(SPH1, SPH2, SPH3, nrow = 3)
 #Save 
 
 saveRDS(all.km, file = here("././results/all.km.rds"))
-saveRDS(all.dist, file = here("././results/all.dist.rds"))
 saveRDS(all.gap, file = here("././results/all.gap.rds"))
 saveRDS(all.sil, file = here("././results/all.sil.rds"))
 saveRDS(all.hier, file = here("././results/all.hier.rds"))
 saveRDS(all.hsil, file = here("././results/hsil.rds"))
 saveRDS(all.hsp, file = here("././results/all.hsp.rds"))
 
-ggsave(filename = here("././results/all.dist.png"),plot=all.dist)
+
 ggsave(filename = here("././results/all.km.png"),plot=all.km)
 ggsave(filename = here("././results/all.gap.png"),plot=all.gap)
 ggsave(filename = here("././results/all.sil.png"),plot=all.sil)
@@ -464,5 +489,156 @@ ggsave(filename = here("././results/all.hsil.png"),plot=all.hsil)
 ggsave(filename = here("././results/all.hsp.png"),plot=all.hsp)
 
 ```
+
+
+
+```{r}
+
+#Tidy data to run analysis
+
+#Combine data
+F1 <- rbind(familydata, familydata2)
+F1
+
+#Create new column with change in bacterial abundance over time
+F1 <- F1 %>% mutate(Abundance.Difference = (End - Beginning))
+F1 <- F1 %>% select(Family, Abundance.Difference)
+F1
+str(F1)
+
+#Duplicate/create new family column in order to create Bacteria Family as a factor
+F1 <- F1 %>% mutate(Bacterial.Family = Family)
+str(F1)
+
+F1$Family=as.factor(F1$Family)
+F1$Family=as.numeric(F1$Family)
+lapply(F1, levels)
+
+F1$Bacterial.Family=as.factor(F1$Bacterial.Family)
+lapply(F1, levels)
+
+F1$Family=as.numeric(F1$Family)
+lapply(F1, levels)
+
+F1$Family=as.factor(F1$Family)
+lapply(F1, levels)
+saveRDS(F1, file = here("././results/F1.rds"))
+
+#Create new data frame to add in RFI status
+RFI_Status <- c(2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1)
+CatRFI <- cut(RFI_Status, breaks = c(0,1,2), labels =c("LowRFI", "HighRFI"))
+
+RFI_Group <- data_frame(CatRFI)
+#Merge two dataframes 
+F2 <-cbind(F1, CatRFI)
+F2
+
+#Change name of RFI colunm
+names(F2)[1:4]<-c("Family", "Abundance_Difference", "Bacterial.Family", "RFI_Status")
+F2
+saveRDS(F2, file = here("././results/F2.rds"))
+
+```
+
+
+
+Linear Regression Model: Abundance ~RFI Status
+```{r}
+#Simple
+#By default, the category that R chooses to be the reference/ baseline, is the first category that appears (ie. LowRFI). In LR model, the intercept refers to the estimated mean Y value for the reference group and the model coefficients, refer to expected changes in the mean Y-value relative to the reference group. 
+
+#reference LowRFI
+mod1= lm(Abundance_Difference ~ RFI_Status, data = F2)
+tidy(mod1)
+mod1sum <- summary(mod1)
+saveRDS(mod1sum, file = here("././results/mod1sum.rds"))
+
+#Multi
+mod2=lm(Abundance_Difference ~ RFI_Status + Bacterial.Family, data = F2 )
+mod2
+tidy(mod2)
+#To check for significant varibles 
+mod2sum <- summary(mod2)
+saveRDS(mod2sum, file = here("././results/mod2sum.rds"))
+
+#Approximately 98% of variation in family abundance over time can be explained by RFI status and classification of bacterial families. 
+#There are a lot of signif values and the p-value overall is small. This linear model appears to be a good fit for this data set.  
+
+
+```
+
+Plotting Linear Regression Model
+```{r}
+#Single model
+
+plot_summs(mod1)
+
+#Differing scales of the varibles 
+plotmod2 <- plot_summs(mod2, scale = TRUE)
+saveRDS(plotmod2, file = here("././results/plotmod2.rds"))
+
+#The default width of the confidencfe interval is .95
+plotmod2sum <- plot_summs(mod2, scale = TRUE, inner_ci_level = .9)
+saveRDS(plotmod2sum, file = here("././results/plotmod2sum.rds"))
+
+#Plot coefficient uncertainty as normal distributions
+plotmod2sum2 <- plot_summs(mod2, scale = TRUE, plot.distributions = TRUE, inner_ci_level = .9)
+
+saveRDS(plotmod2sum2, file = here("././results/plotmod2sum2.rds"))
+```
+
+
+Table Outputts for Word/RMD
+```{r}
+expmod2 <- export_summs(mod2, scale = TRUE)
+
+
+#add confidence intervals 
+expmod2.2 <- export_summs(mod2, scale = TRUE, error_format = "[{conf.low}, {conf.high}]")
+
+
+#add p values
+expmod2.3 <- export_summs(mod2, scale = TRUE, error_format = "[{statistic}, p = {p.value}]")
+saveRDS(expmod2.3, file = here("././results/expmod2.3.rds"))
+```
+
+
+Looking at other models: Logistic Regression Model
+```{r}
+
+#Change RFI_Status baack to numbers 
+levels(F2$RFI_Status) <- c("1", "2")
+lapply(F2, levels)
+F2
+
+
+#RFI_Status ~ Abundance_Difference
+mod3 <- glm(RFI_Status ~ Abundance_Difference, family = "binomial", data = F2)
+tidy(mod3)
+mod3sum <- summary(mod3)
+saveRDS(mod3sum, file = here("././results/mod3sum.rds"))
+
+
+
+#RFI_Status ~ Family
+mod4 <- glm(RFI_Status ~ Family, family = "binomial", data = F2)
+tidy(mod4)
+summary(mod4)
+mod4sum <- summary(mod4)
+saveRDS(mod4sum, file = here("././results/mod4sum.rds"))
+
+
+#RFI_Status ~ Family + Abundance_Difference +Bacterial. Family
+mod5 <- glm(RFI_Status ~ Family + Abundance_Difference + Bacterial.Family, family = "binomial", data = F2)
+tidy(mod5)
+summary(mod4)
+```
+
+
+
+
+
+
+
 
 

@@ -1,6 +1,10 @@
 # Mia Carmichael's class project overview
 
-All code chunks in `products/manuscript/ProjectTemplate.Rmd` pull from other files (`processing_code`, `analysis_code`, `supplementmat`, etc) in order to run this project. 
+All code chunks in `products/manuscript/ProjectTemplate.Rmd` pull from other files (`processing_code`, `analysis_code`, `supplementmat`, etc) in order to run this project follow this
+1. run processingscrip.R  `code/processing_code/processingscrip.R`
+2. run analysisscript.R `code/analysis_code/analysisscript.R`
+3. run supplementary material `products/manuscript/supplementmats.Rmd`
+4. run ProjectTemplate.RMD in `products/manuscript/ProjectTemplate.Rmd`
 
 # Pre-requisites
 

@@ -81,7 +81,7 @@ as_tibble(phylatest)
 #What changes occured at the phyla level in low-RFI steers?
 
 #load data. path is relative to project directory.
-phyladata2<- readRDS("././data/processed_data/processeddata_phyladata2.rds")
+phyladata2<- readRDS("././data/processed_data/processeddata_phyladata.rds")
 phylatest2 <- readRDS(here("././data/processed_data/processeddata_phyladata2.rds"))
 
 #An initial plot is created showing the composition of phyla at the beginning of the feedlot period in Low RFI/High efficiency steers. Save plot to a file.
@@ -411,17 +411,236 @@ saveRDS(linearMod3table, file = here ("././results/linearMod3table.rds"))
 
 
 
+#### Cluster
+library(tidyverse)
+library(factoextra)
+library(FactoMineR)
+library(cluster)
+
+#Combine low and high RFI- Phyla
+phyla.all <- rbind(phyladata, phyladata2)
+
+#Rows are observations (individuals) and columns are variables
+sapply(phyla.all, class)
+phyla.all = subset(phyla.all, select = -c(`Phyla`))
+attr(phyla.all, "row.names") <- c("H-Firmicutes", "H-Bacteroidetes", "H-Actinobacteria", "H-Proteobacteria", "H-Euryarchaeota", "H-TM7", "H-Spirochaetes", "H-Tenericutes", "H-Cyanobacteria", "H-Planctomycetes", "H-OtherPhyla", "L-Firmicutes", "L-Bacteroidetes", "L-Actinobacteria", "L-TM7", "L-Proteobacteria", "L-Euryarchaeota", "L-Spirochaetes", "L-Cyanobacteria", "L-Tenericutes", "L-Planctomycetes", "L-OtherPhyla")
+view(phyla.all)
+
+#Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
+
+phyla.all <- scale(phyla.all)
+head(phyla.all)
+
+#Clutering Distance Measures
+#get_dist: for computing a distance matrix between the rows of a data matrix. 
+#fviz_dist: for visualizing a distance matrix
+
+phyladistance <- get_dist(phyla.all) 
+D1<-fviz_dist(phyladistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Phyla Distance Matrix")
+
+#Assessing Clusterability
+#The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
+phyla.all.hop <- get_clust_tendency(phyla.all, 21, graph = TRUE)
+View(phyla.all.hop)
+phyla.all.hop$hopkins_stat
+
+#The value of the Hopkins statistic is significantly < 0.5 (0.94368), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
+
+#Estimate the number of clusters in the data
+#As k-means clustering requires to specify the number of clusters to generate, we’ll use the function clusGap() [cluster package] to compute gap statistics for estimating the optimal number of clusters . The function fviz_gap_stat() [factoextra] is used to visualize the gap statistic plot.
+
+set.seed(22)
+
+#Compute gap statistic
+phyla.gap <- clusGap(phyla.all, FUN = kmeans, nstart = 25, K.max = 10, B = 100)
+
+#Plot the result
+fviz_gap_stat(phyla.gap)
+
+#The gap statistic suggests a 7 cluster solution
+
+#Compute k-means clustering, k=7
+set.seed(22)
+km.phyla <- kmeans(phyla.all, 7, nstart = 25)
+head(km.phyla$cluster, 22)
+
+#Visualize clusters using factoextra
+fviz_cluster(km.phyla, phyla.all)
 
 
-
-
-
-
+#Cluster validation statistics: Inspect cluster silhouette plot
+#Silhouette measures (Si) how similar an object i is to the the other objects in its own cluster versus those in the neighbor cluster. Si
+#Si values range from 1 to - 1:
+sil.phyla <- silhouette(km.phyla$cluster, dist(phyla.all))
+rownames(sil.phyla) <- rownames(phyla.all)
+head(sil.phyla)
+fviz_silhouette(sil.phyla)
   
- 
+#It can be seen that there are some samples which have negative silhouette values. Some natural questions are : "Which samples are these? To what cluster are they closer?"
+neg.sil.phyla <- which(sil.phyla[,"sil_width"] < 0)
+sil.phyla[neg.sil.phyla, , drop = FALSE]
+
+
+#K-means clustering using eclust(). Doesnt allow duplicate row names, will have to change. 
+
+K1<-eclust(phyla.all, "kmeans", nstart = 25)
+
+#Gap statistic plot
+G1 <- fviz_gap_stat(K1$gap_stat) + ggtitle("Phyla Gap Statistic Plot")
+
+# Silhouette plot
+S1 <-fviz_silhouette(K1) + ggtitle("Phyla Silhouette Plot")
+
+#Enhanced hierarchical clustering
+
+hc.phyla <- eclust(phyla.all, "hclust")
+
+H1 <- fviz_dend(hc.phyla, rect = TRUE) + ggtitle("Phyla Hierarchial Clustering")
+
+#Silhouette plot and the scatter plot for hierarchical clustering.
+
+SH1 <- fviz_silhouette(hc.phyla) + ggtitle("Phyla Hierarchial Silhouette Plot")
+SPH1 <- fviz_cluster(hc.phyla) + ggtitle("Phyla Hierchial Scatter Plot")
+
+
+#########Choose a method and do for all (phyla, family, and genus)
+#Combine low and high RFI- Family
+
+family.all  <- rbind(familydata, familydata2)
+
+#Rows are observations (individuals) and columns are variables
+sapply(family.all, class)
+family.all = subset(family.all, select = -c(`Family`))
+attr(family.all, "row.names") <- c("H-Ruminococcaceae", "H-Prevotellaceae", "H-Order Clostridiales", "H-Order Bacteroidales", "H-Lachnospiraceae", "H-RF16", "H-Methanobacteriaceae", "H-F16", "H-Paraprevotellaceae", "H-S24-7", "H-Coriobacteriaceae", "H-Erysipelotrichaceae", "H-Bifidobacteriaceae", "H-Spirochaetaceae", "H-Streptococcaceae", "H-Mogibacteriaceae", "H-Succinivibrionaceae", "H-Other Families" , "L-Ruminococcaceae", "L-Prevotellaceae", "L-Order Bacteroidales", "L-Order Clostridiales", "L-Lachnospiraceae", "L-Bifidobacteriaceae", "L-F16", "L-RF16", "L-Paraprevotellaceae", "L-Methanobacteriaceae", "L-Spirochaetaceae", "L-Erysipelotrichaceae", "L-Coriobacteriaceae", "L-Succinivibrionaceae", "L-Order RF32", "L-S24-7", "L-Other Families")
+view(family.all)
+
+#Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
+
+family.all <- scale(family.all)
+head(family.all)
+
+#Clutering Distance Measures
+#get_dist: for computing a distance matrix between the rows of a data matrix. 
+#fviz_dist: for visualizing a distance matrix
+
+familydistance <- get_dist(family.all) 
+D2 <- fviz_dist(familydistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Genus Distance Matrix")
+
+
+#Assessing Clusterability
+#The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
+family.all.hop <- get_clust_tendency(family.all, 34, graph = TRUE)
+View(family.all.hop)
+family.all.hop$hopkins_stat
+
+#The value of the Hopkins statistic is significantly < 0.5 (0.9490412), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
+
+
+#K-means clustering using eclust(). Doesnt allow duplicate row names, will have to change. 
+
+K2 <-eclust(family.all, "kmeans", nstart = 25)
+
+#Gap statistic plot
+G2 <-fviz_gap_stat(K2$gap_stat)  + ggtitle("Family Gap Statistic Plot")
+
+
+# Silhouette plot
+S2 <- fviz_silhouette(K2) + ggtitle("Family Silhouette Plot")
+
+
+#Enhanced hierarchical clustering
+
+hc.family <- eclust(family.all, "hclust")
+
+H2 <-fviz_dend(hc.family, rect = TRUE) + ggtitle("Family Hierarchial Clustering")
+
+#Silhouette plot and the scatter plot for hierarchical clustering.
+
+SH2 <- fviz_silhouette(hc.family) + ggtitle("Family Hierarchial Silhouette Plot")
+SPH2 <- fviz_cluster(hc.family) + ggtitle("Family Hierarchial Scatter Plot")
 
 
 
 
+########Choose a method and do for all (phyla, family, and genus)
+#Combine low and high RFI- Genus
 
-  
+genus.all <- rbind(genusdata, genusdata2)
+
+#Rows are observations (individuals) and columns are variables
+sapply(genus.all, class)
+genus.all = subset(genus.all, select = -c(`Genus`))
+attr(genus.all, "row.names") <- c("H-Methanobrevibacter", "H-Methanosphaera","L-Methanobrevibacter", "L-Methanosphaera")
+view(genus.all)
+
+#Don’t want the clustering algorithm to depend to an arbitrary variable unit, we start by scaling/standardizing the data using the R function scale:
+
+family.all <- scale(genus.all)
+head(genus.all)
+
+#Clutering Distance Measures
+#get_dist: for computing a distance matrix between the rows of a data matrix. 
+#fviz_dist: for visualizing a distance matrix
+
+genusdistance <- get_dist(genus.all) 
+D3 <- fviz_dist(genusdistance, gradient = list(low= "#00AFBB", mid= "white", high= "#FC4E07")) + ggtitle("Phyla Distance Matrix")
+
+
+#Assessing Clusterability
+#The function get_clust_tendency() [factoextra package] can be used. It computes the Hopkins statistic
+genus.all.hop <- get_clust_tendency(genus.all, 2, graph = TRUE)
+View(genus.all.hop)
+genus.all.hop$hopkins_stat
+
+#The value of the Hopkins statistic is significantly < 0.5 (0.9881), indicating that the data is highly clusterable. Additionally, It can be seen that the ordered dissimilarity image contains patterns (i.e., clusters).
+
+
+#K-means clustering using eclust(). Doesnt allow duplicate row names, will have to change. 
+
+K3 <-eclust(genus.all, "kmeans", nstart = 25, k.max = 2)
+#Gap statistic plot
+G3 <-fviz_gap_stat(K3$gap_stat) + ggtitle("Genus Statistic Plot")
+
+# Silhouette plot
+S3 <- fviz_silhouette(K3) + ggtitle("Genus Silhouette Plot")
+
+#Enhanced hierarchical clustering
+
+hc.genus <- eclust(genus.all, "hclust", k.max = 2)
+
+H3 <-fviz_dend(hc.genus, rect = TRUE) + ggtitle("Genus Hierarchial Clustering")
+
+#Silhouette plot and the scatter plot for hierarchical clustering.
+
+SH3 <- fviz_silhouette(hc.genus) + ggtitle("Genus Hierarchial Silhouette Plot")
+SPH3 <- fviz_cluster(hc.genus) + ggtitle("Genus Hierarchial Scatter Plot")
+
+
+####Compile all Kmeans figures for comparison
+PK1 <- fviz_cluster(K1, geom = "point", data = df) + ggtitle("Phyla K-Means: k = 3")
+PK2 <- fviz_cluster(K2, geom = "point",  data = df) + ggtitle("Family K-Means: k = 7")
+PK3 <- fviz_cluster(K3, geom = "point",  data = df) + ggtitle("Genus K-Means: k = 2")
+
+library(gridExtra)
+all.km <-grid.arrange(PK1, PK2, PK3, nrow = 3) 
+
+####Compile all distance figures for comparison
+all.dist <- grid.arrange(D1, D2, D3, nrow= 3)
+
+####Compile all gap figures for comparison
+all.gap <- grid.arrange(G1,G2,G3, nrow = 3)
+
+####Compile all Silhouette figures for comparison
+all.sil <- grid.arrange(S1,S2,S3, nrow = 3)
+                        
+####Compile all Hierarchial Clustering figures for comparison
+all.hier <- grid.arrange(H1, H2, H3, nrow = 3)
+
+####Compile all Hierarchial Silhouette figures for comparison
+all.hsil <- grid.arrange(SH1, SH2, SH3, nrow = 3)
+
+####Compile all Hierarchial Scatter Plot figures for comparison
+all.hsp <- grid.arrange(SPH1, SPH2, SPH3, nrow = 3)
+
+
+

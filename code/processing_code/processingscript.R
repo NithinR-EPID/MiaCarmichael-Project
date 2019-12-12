@@ -26,7 +26,7 @@ alpha_diversity_hi <- read.csv(here("data", "raw_data", "Alpha_Diversity_high.cs
 head(alpha_diversity_hi)
 
 #Make a subset of this data frame without P to recalculate that value in our own analysis
-alpha_diversity_hi =subset(alpha_diversity_hi, select = -c(`P.value`))
+alpha_diversity_hi =subset(alpha_diversity_hi, select = -c(P.value))
 
 #Take a look at the data
 head(alpha_diversity_hi)
@@ -241,10 +241,10 @@ saveRDS(familydata2, file = here("./data/processed_data/processeddata_familydata
 saveRDS(genusdata, file = here("./data/processed_data/processeddata_genusdata.rds"))
 saveRDS(genusdata2, file = here("./data/processed_data/processeddata_genusdata2.rds"))
 
-saveRDS(phylatest, file = here("./data/processed_data/processeddata_phyladata.rds"))
-saveRDS(phylatest2, file =here("./data/processed_data/processeddata_phyladata2.rds"))
-saveRDS(familytest, file = here("./data/processed_data/processeddata_familydata.rds"))
-saveRDS(familytest2, file = here("./data/processed_data/processeddata_familydata2.rds"))
-saveRDS(genustest, file = here("./data/processed_data/processeddata_genusdata.rds"))
-saveRDS(genustest2, file = here("./data/processed_data/processeddata_genusdata2.rds"))
+saveRDS(phylatest, file = here("./data/processed_data/processeddata_phylatest.rds"))
+saveRDS(phylatest2, file =here("./data/processed_data/processeddata_phylatest2.rds"))
+saveRDS(familytest, file = here("./data/processed_data/processeddata_familytest.rds"))
+saveRDS(familytest2, file = here("./data/processed_data/processeddata_familytest2.rds"))
+saveRDS(genustest, file = here("./data/processed_data/processeddata_genustest2.rds"))
+saveRDS(genustest2, file = here("./data/processed_data/processeddata_genustest2.rds"))
 
