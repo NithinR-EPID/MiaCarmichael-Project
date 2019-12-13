@@ -1,0 +1,155 @@
+# Overview
+
+Title of project: Evaluation of the ruminal microbiome in beef cattle with different feed efficiencies during the feedlot-finishing phase
+
+Author of project: Mia Carmichael 
+
+Author of Reviw: Megan Beaudry
+
+# Specific project content evaluation
+Evaluate the different parts of the project by filling in the sections below.
+
+
+## Background, Context and Motivation
+How well is the context of the project described? Is a comprehensive background, including summary of previous/related work given? Is the project well placed into the context of existing work (including proper referencing of existing work). Is it clear why the project was undertaken and what new information it hopes to provide?
+
+### Feedback and Comments
+
+Background information was concise. I was able to understand the reasoning behing studying the microbiome of beef cattle. As a microbiologist I find this study very interesting!  
+
+### Summary assessment
+* strong contextualization and motivation
+
+
+## Question description
+How well and clear are the question(s)/hypotheses the project aims to address described? Is it clear how the questions relate to the data?
+
+
+### Feedback and Comments
+
+Yes, a select group of cows microbiome were study. Only the 5 most efficient and 5 least efficient according to residual feed intake (RFI) were selected for analysis of their ruminal microbiomes to see answer what changes occur in the rumen microbiome of a feedlot cow on a high starch diet. I am interested to see what methods were used to gather this kind of data, as we were not taught how to use Next Generation Sequencing (NGS) data in R in this course, as that is often what is used in microbiome studies. 
+
+### Summary assessment
+* question/hypotheses fully clear
+
+
+## Data description
+How well is the data overall described? Is the source provided? Is a codebook or other meta-information available that makes it clear what the data is? 
+
+### Feedback and Comments
+
+Data is well described from cows that were used in the study, to the molecular biology behind the work. 16S amplicon sequencing was used to study the microbiome, and was sequenced on a MiSeq at the UGA genomics core. 
+
+### Summary assessment
+* source and overall structure of data well explained
+
+
+## Data wrangling and exploratory analysis
+How well is the data cleaned/processed and explored? Are all steps reasonable and well explained? Are alternatives discussed and considered? Are meaningful exploratory results shown (e.g. in the supplementary materials)?
+
+
+### Feedback and Comments
+
+Setps in data wrangling are reasonable. It seems that the cleaning required for this data set was very minimal, as the majority of the steps are just renaming columns and removing missing values. Data entry must have been perfect to not have to change anything. However, no specific exploratory data analysis was provided or stated in the "analysiscript". No alternatives were discussed.
+
+### Summary assessment
+* some weaknesses in wrangling and exploratory component
+
+
+
+## Appropriateness of Analysis
+Were the analysis methods appropriate for the data? Was the analysis done properly? Were different components of the analysis (e.g. performance measure, variable selection, data pre-processing, model evaluation) done in the best way possible and explained well?
+
+### Feedback and Comments
+
+Minimal analysis was done, as only barplots were used. However, what analysis that was done was well explained. It would have been nice to see other types of analysis but I think it fits with microbiome data (for the capabilities R has verses other programs such as QIIME2). 
+
+### Summary assessment
+* strong and reasonable analysis
+
+## Presentation
+How well are results presented? Are tables and figures easy to read and understand? Are the main figures/tables publication level quality? 
+
+### Feedback and Comments
+
+Figures had not been put in the manuscript yet which was disappointing. 
+
+### Summary assessment
+* results are presented ok, with room for improvement
+* results are very well presented
+
+
+## Discussion/Conclusions
+Are the study findings properly discussed? Are strengths and limitations acknowledged? Are findings interpreted properly?
+
+### Feedback and Comments
+
+Nothing was discussed.
+
+### Summary assessment
+* major parts of discussion missing or wrong 
+
+
+## Further comments
+Project was not complete, I will be interested to see what conclusions she comes too!
+
+
+# Overall project content evaluation
+Evaluate overall features of the project  by filling in the sections below.
+
+
+## Structure
+Is the project well structured? Are files in well labeled folders? Do files have reasonable names? Are all "junk" files not needed for analysis/reproduction removed? By just looking at files and folders, can you get an idea of how things fit together?
+
+### Feedback and Comments
+
+Project structure at this time was minimal as the project has not been completed. There were no readmes with instructions, so that was disappointing.
+
+### Summary assessment
+* mostly clear, but some confusing parts (e.g. useless files, things in the wrong folders)
+
+
+
+## Documentation 
+How well is the project documented? Are you able to understand each step of the whole analysis, each decision that was made, and each line of code? Is enough information provided as comments in code or as part of Rmd files? 
+
+### Feedback and Comments
+
+Yes, there was enough information for the amount of anlysis that was completed. 
+
+### Summary assessment
+* decently documented with some gaps
+
+
+
+## Reproducibility
+Are all results fully reproducible? Is documentation provided which clearly explains how to reproduce things, and does it work without the need for any manual intervention?
+
+### Feedback and Comments
+
+Results are reproducible, but there was no documentation on how to reproduce things. I guessed. 
+
+
+### Summary assessment
+* small parts not reproducible or required manual intervention 
+
+
+## Thoroughness
+How thorough was the overall study? Were alternatives (e.g. different ways of processing the data or different models) considered? Were alternatives discussed? Were the questions/hypotheses fully and thoroughly addressed?
+
+### Feedback and Comments
+
+I would have appreciated more analysis than just bar charts - even if it was just exploratory figures. Some clustering charts could have been interesting to see how different samples (i.e., cows) group together.
+
+### Summary assessment
+* decent level of thoroughness
+
+
+
+## Further comments
+Overall, I find this project really interesting. I think you did a great job explaining the data and how you collected it. I can tell you haven't finished the manuscript, so I would recommend completing that and adding a few different types of analysis to your scipt - even if they are not publication quality, so we can see that you did try other exploration methods. In addition, the two of your scripts ran without erros.
+
+
+
+
+
